@@ -2,7 +2,7 @@
 
 The core of applications for working with routes:
 
-* [laravel-routes-core](https://github.com/andrey-helldar/laravel-routes-core)
+* [pretty-routes](https://github.com/andrey-helldar/pretty-routes)
 * [laravel-swagger](https://github.com/andrey-helldar/laravel-swagger)
 
 [![StyleCI Status][badge_styleci]][link_styleci]
