@@ -3,6 +3,7 @@
 namespace Helldar\LaravelRoutesCore\Models;
 
 use Helldar\LaravelRoutesCore\Facades\Annotation;
+use Helldar\Support\Facades\Arr as ArrHelper;
 use Helldar\Support\Facades\Http;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Routing\Route as IlluminateRoute;
@@ -66,8 +67,8 @@ final class Route implements Arrayable
     public function getMethods(): array
     {
         return array_values(array_diff(
-            $this->route->methods(),
-            $this->hide_methods
+            ArrHelper::map($this->route->methods(), 'mb_strtoupper'),
+            ArrHelper::map($this->hide_methods, 'mb_strtoupper')
         ));
     }
 
