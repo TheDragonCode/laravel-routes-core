@@ -8,6 +8,24 @@ use ReflectionClass;
 
 final class Annotation
 {
+    public function summary(string $controller, string $method = null): ?string
+    {
+        if ($comment = $this->docComment($controller, $method)) {
+            return $comment;
+        }
+
+        return null;
+    }
+
+    public function description(string $controller, string $method = null): ?string
+    {
+        if ($comment = $this->docComment($controller, $method)) {
+            return $comment;
+        }
+
+        return null;
+    }
+
     /**
      * Determines if a class or method is deprecated.
      *
@@ -148,5 +166,14 @@ final class Annotation
             $this->reflectionClass($controller),
             $method
         );
+    }
+
+    protected function docComment(string $controller, string $method = null): ?string
+    {
+        $item = is_null($method)
+            ? $this->reflectionClass($controller)
+            : $this->reflectionMethod($controller, $method);
+
+        return $item->getDocComment() ?: null;
     }
 }
