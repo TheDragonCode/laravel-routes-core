@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static array get()
  * @method static Collection collection()
- * @method static Support hideMethods(array $methods)
- * @method static Support hideMatching(array $matching)
  * @method static Support setHideMethods(array $methods)
  * @method static Support setHideMatching(array $matching)
  * @method static Support setDomainForce(bool $force = false)
