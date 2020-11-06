@@ -16,10 +16,46 @@ final class Route implements Arrayable
 
     protected $priority;
 
+    protected $hide_methods = [];
+
+    protected $domain_force = false;
+
+    protected $url;
+
+    protected $namespace;
+
     public function __construct(IlluminateRoute $route, int $priority)
     {
         $this->route    = $route;
         $this->priority = ++$priority;
+    }
+
+    public function setHideMethods(array $hide_methods)
+    {
+        $this->hide_methods = $hide_methods;
+
+        return $this;
+    }
+
+    public function setDomainForce(bool $domain_force)
+    {
+        $this->domain_force = $domain_force;
+
+        return $this;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
+
+        return $this;
     }
 
     public function getPriority(): int
@@ -31,7 +67,7 @@ final class Route implements Arrayable
     {
         return array_values(array_diff(
             $this->route->methods(),
-            config('pretty-routes.hide_methods', [])
+            $this->hide_methods
         ));
     }
 
@@ -41,8 +77,8 @@ final class Route implements Arrayable
             return $domain;
         }
 
-        return config('pretty-routes.domain_force')
-            ? Http::domain(config('app.url'))
+        return $this->domain_force
+            ? Http::domain($this->url)
             : null;
     }
 
@@ -58,7 +94,7 @@ final class Route implements Arrayable
 
     public function getModule(): ?string
     {
-        $namespace = config('modules.namespace');
+        $namespace = $this->namespace;
 
         if ($namespace && Str::startsWith($this->getAction(), $namespace)) {
             $action   = Str::after($this->getAction(), $namespace);

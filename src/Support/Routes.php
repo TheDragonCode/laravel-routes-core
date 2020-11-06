@@ -13,6 +13,12 @@ final class Routes
 
     protected $hide_matching = [];
 
+    protected $domain_force = false;
+
+    protected $url = null;
+
+    protected $namespace = null;
+
     public function collection(): Collection
     {
         return $this->getRoutes()
@@ -20,7 +26,13 @@ final class Routes
                 return $this->allowUri($route->uri()) && $this->allowMethods($route->methods());
             })
             ->values()
-            ->mapInto(RouteModel::class);
+            ->map(function (Route $route, int $index) {
+                return (new RouteModel($route, $index))
+                    ->setDomainForce($this->domain_force)
+                    ->setHideMethods($this->hide_methods)
+                    ->setUrl($this->url)
+                    ->setNamespace($this->namespace);
+            });
     }
 
     public function get(): array
@@ -28,16 +40,37 @@ final class Routes
         return $this->collection()->toArray();
     }
 
-    public function hideMethods(array $methods): self
+    public function setHideMethods(array $methods): self
     {
         $this->hide_methods = $methods;
 
         return $this;
     }
 
-    public function hideMatching(array $matching): self
+    public function setHideMatching(array $matching): self
     {
         $this->hide_matching = $matching;
+
+        return $this;
+    }
+
+    public function setDomainForce(bool $force = false): self
+    {
+        $this->domain_force = $force;
+
+        return $this;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function setNamespace(string $namespace = null): self
+    {
+        $this->namespace = $namespace;
 
         return $this;
     }
