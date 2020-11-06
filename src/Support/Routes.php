@@ -13,15 +13,19 @@ final class Routes
 
     protected $hide_matching = [];
 
-    public function get(): array
+    public function collection(): Collection
     {
         return $this->getRoutes()
             ->filter(function (Route $route) {
                 return $this->allowUri($route->uri()) && $this->allowMethods($route->methods());
             })
             ->values()
-            ->mapInto(RouteModel::class)
-            ->toArray();
+            ->mapInto(RouteModel::class);
+    }
+
+    public function get(): array
+    {
+        return $this->collection()->toArray();
     }
 
     public function hideMethods(array $methods): self
