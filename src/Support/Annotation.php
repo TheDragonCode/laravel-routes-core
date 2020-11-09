@@ -170,9 +170,13 @@ final class Annotation
 
     protected function docComment(string $controller, string $method = null): ?string
     {
-        $item = is_null($method)
-            ? $this->reflectionClass($controller)
-            : $this->reflectionMethod($controller, $method);
+        if (is_null($method)) {
+            [$controller, $method] = $this->parse($controller);
+        }
+
+        $class = $this->reflectionClass($controller);
+
+        $item = is_null($method) ? $class : $this->reflectionMethod($class, $method);
 
         return $item->getDocComment() ?: null;
     }
