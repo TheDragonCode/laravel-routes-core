@@ -9,7 +9,6 @@ final class Controller
      */
     public function summary()
     {
-
     }
 
     /**
@@ -34,23 +33,16 @@ final class Controller
      */
     public function deprecated()
     {
-
     }
 
-    /**
-     * @return void
-     */
     public function without()
     {
     }
 
     /**
      * @deprecated
-     *
-     * @return void
      */
     public function withoutDeprecated()
     {
-
     }
 }

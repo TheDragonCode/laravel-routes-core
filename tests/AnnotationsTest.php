@@ -25,8 +25,9 @@ final class AnnotationsTest extends TestCase
         $this->assertEquals(
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" .
             "Pellentesque lorem libero, ultricies ut nisl in, vestibulum egestas neque.\n" .
-            "Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.",
-            $route->getDescription());
+            'Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.',
+            $route->getDescription()
+        );
 
         $this->assertFalse($route->getDeprecated());
     }
@@ -40,8 +41,9 @@ final class AnnotationsTest extends TestCase
         $this->assertEquals(
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" .
             "Pellentesque lorem libero, ultricies ut nisl in, vestibulum egestas neque.\n" .
-            "Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.",
-            $route->getDescription());
+            'Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.',
+            $route->getDescription()
+        );
 
         $this->assertTrue($route->getDeprecated());
     }
