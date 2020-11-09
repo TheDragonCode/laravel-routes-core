@@ -3,29 +3,14 @@
 namespace Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Tests\Fixtures\ServiceProvider as FixtureServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
-    protected function getEnvironmentSetUp($app)
+    protected function getPackageProviders($app)
     {
-        $this->setRoutes($app);
-    }
-
-    protected function setRoutes($app)
-    {
-        $app['router']->get('/foo', function () {
-        });
-
-        $app['router']->match(['PUT', 'PATCH'], '/bar', function () {
-        });
-
-        $app['router']->get('/_ignition/baq', function () {
-        });
-
-        $app['router']->get('/telescope/baw', function () {
-        });
-
-        $app['router']->get('/_debugbar/bae', function () {
-        });
+        return [
+            FixtureServiceProvider::class,
+        ];
     }
 }

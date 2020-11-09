@@ -123,6 +123,16 @@ final class Route implements Arrayable
         return array_values($middlewares);
     }
 
+    public function getSummary(): ?string
+    {
+        return Annotation::summary($this->getAction());
+    }
+
+    public function getDescription(): ?string
+    {
+        return Annotation::description($this->getAction());
+    }
+
     public function getDeprecated(): bool
     {
         return Annotation::isDeprecated($this->getAction());
@@ -140,6 +150,8 @@ final class Route implements Arrayable
             'action'      => $this->getAction(),
             'middlewares' => $this->getMiddlewares(),
             'deprecated'  => $this->getDeprecated(),
+            'summary'     => $this->getSummary(),
+            'description' => $this->getDescription(),
         ];
     }
 }

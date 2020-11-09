@@ -2,25 +2,42 @@
 
 namespace Helldar\LaravelRoutesCore\Support;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlockFactory;
 use ReflectionClass;
 
 final class Annotation
 {
+    /**
+     * @param  string  $controller
+     * @param  string|null  $method
+     *
+     * @throws \ReflectionException
+     *
+     * @return string|null
+     */
     public function summary(string $controller, string $method = null): ?string
     {
-        if ($comment = $this->docComment($controller, $method)) {
-            return $comment;
+        if ($reader = $this->reader($controller, $method)) {
+            return $reader->getSummary() ?: null;
         }
 
         return null;
     }
 
+    /**
+     * @param  string  $controller
+     * @param  string|null  $method
+     *
+     * @throws \ReflectionException
+     *
+     * @return string|null
+     */
     public function description(string $controller, string $method = null): ?string
     {
-        if ($comment = $this->docComment($controller, $method)) {
-            return $comment;
+        if ($reader = $this->reader($controller, $method)) {
+            return $reader->getDescription()->getBodyTemplate() ?: null;
         }
 
         return null;
@@ -38,11 +55,9 @@ final class Annotation
      */
     public function isDeprecated(string $controller, string $method = null)
     {
-        if (is_null($method)) {
-            [$controller, $method] = $this->parse($controller);
-        }
-
-        return $this->isDeprecatedClass($controller) || $this->isDeprecatedMethod($controller, $method);
+        return is_null($method)
+            ? $this->isDeprecatedClass($controller)
+            : $this->isDeprecatedMethod($controller, $method);
     }
 
     /**
@@ -55,10 +70,10 @@ final class Annotation
      *
      * @return bool
      */
-    public function isDeprecatedMethod(string $controller, string $method)
+    public function isDeprecatedMethod(string $controller, string $method): bool
     {
-        if ($item = $this->getReflectionMethod($controller, $method)) {
-            return $this->contains($item->getDocComment());
+        if ($reader = $this->reader($controller, $method)) {
+            return $reader->hasTag('@deprecated');
         }
 
         return false;
@@ -75,8 +90,8 @@ final class Annotation
      */
     public function isDeprecatedClass(string $controller)
     {
-        if ($item = $this->reflectionClass($controller)) {
-            return $this->contains($item->getDocComment());
+        if ($reader = $this->reader($controller)) {
+            return $reader->hasTag('deprecated');
         }
 
         return false;
@@ -98,25 +113,41 @@ final class Annotation
     }
 
     /**
-     * Determines if an deprecated method label exists in a string.
+     * @param  string  $controller
+     * @param  string|null  $method
      *
-     * @param $haystack
+     * @throws \ReflectionException
      *
-     * @return bool
+     * @return \phpDocumentor\Reflection\DocBlock|null
      */
-    protected function contains($haystack)
+    protected function reader(string $controller, string $method = null): ?DocBlock
     {
-        return Str::contains($haystack, '@deprecated');
+        if (is_null($method)) {
+            [$controller, $method] = $this->parse($controller);
+        }
+
+        $item = $this->reflection($controller, $method);
+
+        if ($item && $comment = $item->getDocComment()) {
+            return DocBlockFactory::createInstance()->create($comment);
+        }
+
+        return null;
     }
 
     /**
-     * Annotation Reader Instance.
+     * @param  string  $controller
+     * @param  string|null  $method
      *
-     * @return \Doctrine\Common\Annotations\AnnotationReader
+     * @throws \ReflectionException
+     *
+     * @return \ReflectionClass|\ReflectionMethod
      */
-    protected function reader()
+    protected function reflection(string $controller, string $method = null)
     {
-        return new AnnotationReader();
+        $class = $this->reflectionClass($controller);
+
+        return is_null($method) ? $class : $this->reflectionMethod($class, $method);
     }
 
     /**
@@ -148,36 +179,5 @@ final class Annotation
         return $class->hasMethod($method)
             ? $class->getMethod($method)
             : null;
-    }
-
-    /**
-     * Getting class reflection instance.
-     *
-     * @param  string  $controller
-     * @param  string  $method
-     *
-     * @throws \ReflectionException
-     *
-     * @return \ReflectionMethod|null
-     */
-    protected function getReflectionMethod(string $controller, string $method)
-    {
-        return $this->reflectionMethod(
-            $this->reflectionClass($controller),
-            $method
-        );
-    }
-
-    protected function docComment(string $controller, string $method = null): ?string
-    {
-        if (is_null($method)) {
-            [$controller, $method] = $this->parse($controller);
-        }
-
-        $class = $this->reflectionClass($controller);
-
-        $item = is_null($method) ? $class : $this->reflectionMethod($class, $method);
-
-        return $item->getDocComment() ?: null;
     }
 }
