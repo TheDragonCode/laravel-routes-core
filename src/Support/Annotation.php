@@ -55,42 +55,7 @@ final class Annotation
      */
     public function isDeprecated(string $controller, string $method = null)
     {
-        return is_null($method)
-            ? $this->isDeprecatedClass($controller)
-            : $this->isDeprecatedMethod($controller, $method);
-    }
-
-    /**
-     * Determines if a method is deprecated.
-     *
-     * @param  string  $controller
-     * @param  string  $method
-     *
-     * @throws \ReflectionException
-     *
-     * @return bool
-     */
-    public function isDeprecatedMethod(string $controller, string $method): bool
-    {
         if ($reader = $this->reader($controller, $method)) {
-            return $reader->hasTag('@deprecated');
-        }
-
-        return false;
-    }
-
-    /**
-     * Determines if a class is deprecated.
-     *
-     * @param  string  $controller
-     *
-     * @throws \ReflectionException
-     *
-     * @return bool
-     */
-    public function isDeprecatedClass(string $controller)
-    {
-        if ($reader = $this->reader($controller)) {
             return $reader->hasTag('deprecated');
         }
 
@@ -106,10 +71,9 @@ final class Annotation
      */
     protected function parse(string $action)
     {
-        return [
-            Str::before($action, '@'),
-            Str::after($action, '@'),
-        ];
+        return Str::contains($action, '@')
+            ? [Str::before($action, '@'), Str::after($action, '@')]
+            : [Str::before($action, '@'), null];
     }
 
     /**
