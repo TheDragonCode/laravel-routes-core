@@ -2,10 +2,8 @@
 
 namespace Helldar\LaravelRoutesCore\Support;
 
-use Illuminate\Support\Str;
+use Helldar\LaravelRoutesCore\Models\Reader;
 use phpDocumentor\Reflection\DocBlock;
-use phpDocumentor\Reflection\DocBlockFactory;
-use ReflectionClass;
 
 final class Annotation
 {
@@ -19,11 +17,9 @@ final class Annotation
      */
     public function summary(string $controller, string $method = null): ?string
     {
-        if ($reader = $this->reader($controller, $method)) {
-            return $reader->getSummary() ?: null;
-        }
-
-        return null;
+        return $this->get(static function (DocBlock $doc) {
+            return $doc->getSummary();
+        }, $controller, $method);
     }
 
     /**
@@ -36,16 +32,12 @@ final class Annotation
      */
     public function description(string $controller, string $method = null): ?string
     {
-        if ($reader = $this->reader($controller, $method)) {
-            return $reader->getDescription()->getBodyTemplate() ?: null;
-        }
-
-        return null;
+        return $this->get(static function (DocBlock $doc) {
+            return $doc->getDescription()->getBodyTemplate();
+        }, $controller, $method);
     }
 
     /**
-     * Determines if a class or method is deprecated.
-     *
      * @param  string  $controller
      * @param  string|null  $method
      *
@@ -55,129 +47,32 @@ final class Annotation
      */
     public function isDeprecated(string $controller, string $method = null)
     {
-        return is_null($method)
-            ? $this->isDeprecatedClass($controller)
-            : $this->isDeprecatedMethod($controller, $method);
+        return (bool) $this->get(static function (DocBlock $doc) {
+            return $doc->hasTag('deprecated');
+        }, $controller, $method);
     }
 
-    /**
-     * Determines if a method is deprecated.
-     *
-     * @param  string  $controller
-     * @param  string  $method
-     *
-     * @throws \ReflectionException
-     *
-     * @return bool
-     */
-    public function isDeprecatedMethod(string $controller, string $method): bool
+    protected function reader(string $controller, string $method = null): Reader
     {
-        if ($reader = $this->reader($controller, $method)) {
-            return $reader->hasTag('@deprecated');
-        }
-
-        return false;
+        return Reader::make($controller, $method);
     }
 
-    /**
-     * Determines if a class is deprecated.
-     *
-     * @param  string  $controller
-     *
-     * @throws \ReflectionException
-     *
-     * @return bool
-     */
-    public function isDeprecatedClass(string $controller)
+    protected function get(callable $callback, string $controller, string $method = null)
     {
-        if ($reader = $this->reader($controller)) {
-            return $reader->hasTag('deprecated');
-        }
+        $reader = $this->reader($controller, $method);
 
-        return false;
+        return $this->getValue($callback, $reader, 'forMethod')
+            ?: $this->getValue($callback, $reader, 'forClass');
     }
 
-    /**
-     * Parsing a string into a class and method.
-     *
-     * @param  string  $action
-     *
-     * @return array
-     */
-    protected function parse(string $action)
+    protected function getValue(callable $callback, Reader $reader, string $method)
     {
-        return [
-            Str::before($action, '@'),
-            Str::after($action, '@'),
-        ];
-    }
-
-    /**
-     * @param  string  $controller
-     * @param  string|null  $method
-     *
-     * @throws \ReflectionException
-     *
-     * @return \phpDocumentor\Reflection\DocBlock|null
-     */
-    protected function reader(string $controller, string $method = null): ?DocBlock
-    {
-        if (is_null($method)) {
-            [$controller, $method] = $this->parse($controller);
-        }
-
-        $item = $this->reflection($controller, $method);
-
-        if ($item && $comment = $item->getDocComment()) {
-            return DocBlockFactory::createInstance()->create($comment);
+        if ($block = $reader->$method()) {
+            if ($value = $callback($block)) {
+                return $value;
+            }
         }
 
         return null;
-    }
-
-    /**
-     * @param  string  $controller
-     * @param  string|null  $method
-     *
-     * @throws \ReflectionException
-     *
-     * @return \ReflectionClass|\ReflectionMethod
-     */
-    protected function reflection(string $controller, string $method = null)
-    {
-        $class = $this->reflectionClass($controller);
-
-        return is_null($method) ? $class : $this->reflectionMethod($class, $method);
-    }
-
-    /**
-     * Getting class reflection instance.
-     *
-     * @param  string  $class
-     *
-     * @throws \ReflectionException
-     *
-     * @return \ReflectionClass
-     */
-    protected function reflectionClass(string $class)
-    {
-        return new ReflectionClass($class);
-    }
-
-    /**
-     * Getting method reflection instance from reflection class.
-     *
-     * @param  \ReflectionClass  $class
-     * @param  string  $method
-     *
-     * @throws \ReflectionException
-     *
-     * @return \ReflectionMethod|null
-     */
-    protected function reflectionMethod(ReflectionClass $class, string $method)
-    {
-        return $class->hasMethod($method)
-            ? $class->getMethod($method)
-            : null;
     }
 }
