@@ -138,6 +138,11 @@ final class Route implements Arrayable
         return Annotation::isDeprecated($this->getAction());
     }
 
+    public function getExceptions(): array
+    {
+        return Annotation::exceptions($this->getAction());
+    }
+
     public function toArray()
     {
         return [
@@ -152,6 +157,7 @@ final class Route implements Arrayable
             'deprecated'  => $this->getDeprecated(),
             'summary'     => $this->getSummary(),
             'description' => $this->getDescription(),
+            'exceptions'  => $this->getExceptions(),
         ];
     }
 }
