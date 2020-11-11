@@ -3,7 +3,9 @@
 namespace Helldar\LaravelRoutesCore\Support;
 
 use Helldar\LaravelRoutesCore\Models\Reader;
+use Helldar\LaravelRoutesCore\Models\Tags\Returns;
 use Helldar\LaravelRoutesCore\Models\Tags\Throws;
+use Illuminate\Support\Arr;
 use phpDocumentor\Reflection\DocBlock;
 
 final class Annotation
@@ -73,6 +75,23 @@ final class Annotation
             ->sortBy('code')
             ->filter()
             ->toArray();
+    }
+
+    /**
+     * @param  string  $controller
+     * @param  string|null  $method
+     *
+     * @return \Helldar\LaravelRoutesCore\Models\Tags\Returns|null
+     */
+    public function response(string $controller, string $method = null): ?Returns
+    {
+        return $this->get(static function (DocBlock $doc) {
+            $returns = array_map(static function (DocBlock\Tags\Return_ $tag) {
+                return Returns::make($tag);
+            }, $doc->getTagsByName('return'));
+
+            return Arr::first($returns);
+        }, $controller, $method);
     }
 
     protected function reader(string $controller, string $method = null): Reader

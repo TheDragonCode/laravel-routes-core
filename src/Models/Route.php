@@ -143,6 +143,11 @@ final class Route implements Arrayable
         return Annotation::exceptions($this->getAction());
     }
 
+    public function getResponse()
+    {
+        return Annotation::response($this->getAction());
+    }
+
     public function toArray()
     {
         return [
@@ -158,6 +163,7 @@ final class Route implements Arrayable
             'summary'     => $this->getSummary(),
             'description' => $this->getDescription(),
             'exceptions'  => $this->getExceptions(),
+            'response'    => $this->getResponse(),
         ];
     }
 }
