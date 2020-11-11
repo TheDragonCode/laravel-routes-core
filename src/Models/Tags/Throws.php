@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 final class Throws extends BaseTag
 {
     /**
-     * @param  \phpDocumentor\Reflection\DocBlock\Tags\Throws|\phpDocumentor\Reflection\DocBlock\Tag  $tag
+     * @param  \phpDocumentor\Reflection\DocBlock\Tag|\phpDocumentor\Reflection\DocBlock\Tags\Throws  $tag
      */
     public function setDescription(DocTag $tag): void
     {

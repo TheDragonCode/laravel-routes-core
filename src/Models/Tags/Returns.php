@@ -10,7 +10,6 @@ final class Returns extends BaseTag
 {
     public function setDescription(DocTag $tag): void
     {
-        //
     }
 
     public function setCode(): void
