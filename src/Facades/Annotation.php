@@ -2,7 +2,7 @@
 
 namespace Helldar\LaravelRoutesCore\Facades;
 
-use Helldar\LaravelRoutesCore\Models\Throws;
+use Helldar\LaravelRoutesCore\Models\Tags\Throws;
 use Helldar\LaravelRoutesCore\Support\Annotation as Support;
 use Illuminate\Support\Facades\Facade;
 

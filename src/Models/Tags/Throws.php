@@ -1,14 +1,14 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Models;
+namespace Helldar\LaravelRoutesCore\Models\Tags;
 
+use Helldar\LaravelRoutesCore\Contracts\Tag;
 use Helldar\LaravelRoutesCore\Traits\Makeable;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use phpDocumentor\Reflection\DocBlock\Tags\Throws as ThrowTag;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-final class Throws implements Arrayable
+final class Throws implements Tag
 {
     use Makeable;
 

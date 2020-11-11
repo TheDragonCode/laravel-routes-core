@@ -3,7 +3,7 @@
 namespace Helldar\LaravelRoutesCore\Support;
 
 use Helldar\LaravelRoutesCore\Models\Reader;
-use Helldar\LaravelRoutesCore\Models\Throws;
+use Helldar\LaravelRoutesCore\Models\Tags\Throws;
 use phpDocumentor\Reflection\DocBlock;
 
 final class Annotation
@@ -51,7 +51,7 @@ final class Annotation
      * @param  string  $controller
      * @param  string|null  $method
      *
-     * @return array|\phpDocumentor\Reflection\DocBlock\Tag[]
+     * @return array|\Helldar\LaravelRoutesCore\Models\Tags\Throws[]
      */
     public function exceptions(string $controller, string $method = null): array
     {
@@ -70,6 +70,7 @@ final class Annotation
             ->merge(collect($for_method))
             ->unique('code')
             ->keyBy('code')
+            ->sortBy('code')
             ->filter()
             ->toArray();
     }
