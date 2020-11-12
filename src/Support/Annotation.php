@@ -6,6 +6,7 @@ use Helldar\LaravelRoutesCore\Models\Reader;
 use Helldar\LaravelRoutesCore\Models\Tags\Returns;
 use Helldar\LaravelRoutesCore\Models\Tags\Throws;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use phpDocumentor\Reflection\DocBlock;
 
 final class Annotation
@@ -53,9 +54,9 @@ final class Annotation
      * @param  string  $controller
      * @param  string|null  $method
      *
-     * @return array|\Helldar\LaravelRoutesCore\Models\Tags\Throws[]
+     * @return \Illuminate\Support\Collection|\Helldar\LaravelRoutesCore\Models\Tags\Throws[]
      */
-    public function exceptions(string $controller, string $method = null): array
+    public function exceptions(string $controller, string $method = null): Collection
     {
         $callback = static function (DocBlock $doc) {
             return array_map(static function (DocBlock\Tags\Throws $tag) {
@@ -73,8 +74,7 @@ final class Annotation
             ->unique('code')
             ->keyBy('code')
             ->sortBy('code')
-            ->filter()
-            ->toArray();
+            ->filter();
     }
 
     /**

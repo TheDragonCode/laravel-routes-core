@@ -8,6 +8,7 @@ use Helldar\Support\Facades\Http;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Routing\Route as IlluminateRoute;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 final class Route implements Arrayable
@@ -138,7 +139,7 @@ final class Route implements Arrayable
         return Annotation::isDeprecated($this->getAction());
     }
 
-    public function getExceptions(): array
+    public function getExceptions(): Collection
     {
         return Annotation::exceptions($this->getAction());
     }
@@ -162,7 +163,7 @@ final class Route implements Arrayable
             'deprecated'  => $this->getDeprecated(),
             'summary'     => $this->getSummary(),
             'description' => $this->getDescription(),
-            'exceptions'  => $this->getExceptions(),
+            'exceptions'  => $this->getExceptions()->toArray(),
             'response'    => $this->getResponse(),
         ];
     }
