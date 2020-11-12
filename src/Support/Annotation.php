@@ -54,7 +54,7 @@ final class Annotation
      * @param  string  $controller
      * @param  string|null  $method
      *
-     * @return \Illuminate\Support\Collection|\Helldar\LaravelRoutesCore\Models\Tags\Throws[]
+     * @return \Helldar\LaravelRoutesCore\Models\Tags\Throws[]|\Illuminate\Support\Collection
      */
     public function exceptions(string $controller, string $method = null): Collection
     {
