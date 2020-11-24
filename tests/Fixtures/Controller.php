@@ -2,8 +2,16 @@
 
 namespace Tests\Fixtures;
 
-final class Controller
+use Illuminate\Routing\Controller as BaseController;
+
+final class Controller extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('api')->only('controllerApiMiddleware');
+        $this->middleware('web')->only('controllerWebMiddleware');
+    }
+
     /**
      * Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo.
      */
@@ -43,6 +51,22 @@ final class Controller
      * @deprecated
      */
     public function withoutDeprecated()
+    {
+    }
+
+    public function routeApiMiddleware()
+    {
+    }
+
+    public function controllerApiMiddleware()
+    {
+    }
+
+    public function routeWebMiddleware()
+    {
+    }
+
+    public function controllerWebMiddleware()
     {
     }
 }

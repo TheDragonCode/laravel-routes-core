@@ -20,3 +20,21 @@ app('router')->get('description', '\Tests\Fixtures\Controller@description')->nam
 app('router')->get('deprecated', '\Tests\Fixtures\Controller@deprecated')->name('deprecated');
 app('router')->get('without', '\Tests\Fixtures\Controller@without')->name('without');
 app('router')->get('withoutDeprecated', '\Tests\Fixtures\Controller@withoutDeprecated')->name('withoutDeprecated');
+
+app('router')
+    ->middleware('api')
+    ->get('routeApiMiddleware', '\Tests\Fixtures\Controller@routeApiMiddleware')
+    ->name('routeApiMiddleware');
+
+app('router')
+    ->get('controllerApiMiddleware', '\Tests\Fixtures\Controller@controllerApiMiddleware')
+    ->name('controllerApiMiddleware');
+
+app('router')
+    ->middleware('web')
+    ->get('routeWebMiddleware', '\Tests\Fixtures\Controller@routeWebMiddleware')
+    ->name('routeWebMiddleware');
+
+app('router')
+    ->get('controllerWebMiddleware', '\Tests\Fixtures\Controller@controllerWebMiddleware')
+    ->name('controllerWebMiddleware');

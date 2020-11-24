@@ -19,6 +19,10 @@ final class Routes
 
     protected $namespace = null;
 
+    protected $api_middlewares = [];
+
+    protected $web_middlewares = [];
+
     public function collection(): Collection
     {
         return $this->getRoutes()
@@ -31,7 +35,9 @@ final class Routes
                     ->setDomainForce($this->domain_force)
                     ->setHideMethods($this->hide_methods)
                     ->setUrl($this->url)
-                    ->setNamespace($this->namespace);
+                    ->setNamespace($this->namespace)
+                    ->setApiMiddlewares($this->api_middlewares)
+                    ->setWebMiddlewares($this->web_middlewares);
             });
     }
 
@@ -71,6 +77,20 @@ final class Routes
     public function setNamespace(string $namespace = null): self
     {
         $this->namespace = $namespace;
+
+        return $this;
+    }
+
+    public function setApiMiddlewares(array $middlewares): self
+    {
+        $this->api_middlewares = $middlewares;
+
+        return $this;
+    }
+
+    public function setWebMiddlewares(array $middlewares): self
+    {
+        $this->web_middlewares = $middlewares;
 
         return $this;
     }

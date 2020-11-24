@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static Support setDomainForce(bool $force = false)
  * @method static Support setUrl(string $url)
  * @method static Support setNamespace(string $namespace = null)
+ * @method static Support setApiMiddlewares(array $middlewares)
+ * @method static Support setWebMiddlewares(array $middlewares)
  */
 final class Routes extends Facade
 {

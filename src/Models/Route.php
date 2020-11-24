@@ -26,6 +26,10 @@ final class Route implements Arrayable
 
     protected $namespace;
 
+    protected $api_middlewares = [];
+
+    protected $web_middlewares = [];
+
     public function __construct(IlluminateRoute $route, int $priority)
     {
         $this->route    = $route;
@@ -56,6 +60,20 @@ final class Route implements Arrayable
     public function setNamespace($namespace)
     {
         $this->namespace = $namespace;
+
+        return $this;
+    }
+
+    public function setApiMiddlewares(array $middlewares)
+    {
+        $this->api_middlewares = $middlewares;
+
+        return $this;
+    }
+
+    public function setWebMiddlewares(array $middlewares)
+    {
+        $this->web_middlewares = $middlewares;
 
         return $this;
     }
@@ -149,6 +167,16 @@ final class Route implements Arrayable
         return Annotation::response($this->getAction());
     }
 
+    public function isApi(): bool
+    {
+        return $this->hasMiddleware($this->api_middlewares);
+    }
+
+    public function isWeb(): bool
+    {
+        return $this->hasMiddleware($this->web_middlewares);
+    }
+
     public function toArray()
     {
         return [
@@ -165,6 +193,13 @@ final class Route implements Arrayable
             'description' => $this->getDescription(),
             'exceptions'  => $this->getExceptions()->toArray(),
             'response'    => $this->getResponse(),
+            'is_api'      => $this->isApi(),
+            'is_web'      => $this->isWeb(),
         ];
+    }
+
+    protected function hasMiddleware(array $middlewares): bool
+    {
+        return ! empty(array_intersect($middlewares, $this->getMiddlewares()));
     }
 }
