@@ -129,16 +129,16 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('foo', $route->getPath());
 
         $this->assertNull($route->getName());
-        $this->assertSame(null, $route->getName());
+        $this->assertNull($route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Closure', $route->getAction());
@@ -150,17 +150,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -178,16 +178,16 @@ final class RoutesTest extends TestCase
         $this->assertSame(['PUT', 'PATCH'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('bar', $route->getPath());
 
         $this->assertNull($route->getName());
-        $this->assertSame(null, $route->getName());
+        $this->assertNull($route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Closure', $route->getAction());
@@ -199,17 +199,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -227,16 +227,16 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('_ignition/baq', $route->getPath());
 
         $this->assertNull($route->getName());
-        $this->assertSame(null, $route->getName());
+        $this->assertNull($route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Closure', $route->getAction());
@@ -248,17 +248,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -276,16 +276,16 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('telescope/baw', $route->getPath());
 
         $this->assertNull($route->getName());
-        $this->assertSame(null, $route->getName());
+        $this->assertNull($route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Closure', $route->getAction());
@@ -297,17 +297,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -325,16 +325,16 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('_debugbar/bae', $route->getPath());
 
         $this->assertNull($route->getName());
-        $this->assertSame(null, $route->getName());
+        $this->assertNull($route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Closure', $route->getAction());
@@ -346,17 +346,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -374,7 +374,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('summary', $route->getPath());
@@ -383,7 +383,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('summary', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@summary', $route->getAction());
@@ -398,14 +398,14 @@ final class RoutesTest extends TestCase
         $this->assertSame('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo.', $route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -423,7 +423,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('description', $route->getPath());
@@ -432,7 +432,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('description', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@description', $route->getAction());
@@ -457,7 +457,7 @@ final class RoutesTest extends TestCase
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -475,7 +475,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('deprecated', $route->getPath());
@@ -484,7 +484,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('deprecated', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@deprecated', $route->getAction());
@@ -509,7 +509,7 @@ final class RoutesTest extends TestCase
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -527,7 +527,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('without', $route->getPath());
@@ -536,7 +536,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('without', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@without', $route->getAction());
@@ -548,17 +548,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -576,7 +576,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('withoutDeprecated', $route->getPath());
@@ -585,7 +585,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('withoutDeprecated', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@withoutDeprecated', $route->getAction());
@@ -597,17 +597,17 @@ final class RoutesTest extends TestCase
         $this->assertTrue($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -625,7 +625,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('routeApiMiddleware', $route->getPath());
@@ -634,7 +634,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('routeApiMiddleware', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@routeApiMiddleware', $route->getAction());
@@ -646,17 +646,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertTrue($route->isApi());
@@ -674,7 +674,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('controllerApiMiddleware', $route->getPath());
@@ -683,7 +683,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('controllerApiMiddleware', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@controllerApiMiddleware', $route->getAction());
@@ -695,17 +695,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertTrue($route->isApi());
@@ -723,7 +723,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('routeWebMiddleware', $route->getPath());
@@ -732,7 +732,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('routeWebMiddleware', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@routeWebMiddleware', $route->getAction());
@@ -744,17 +744,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
@@ -772,7 +772,7 @@ final class RoutesTest extends TestCase
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
 
         $this->assertNull($route->getDomain());
-        $this->assertSame(null, $route->getDomain());
+        $this->assertNull($route->getDomain());
 
         $this->assertIsString($route->getPath());
         $this->assertSame('controllerWebMiddleware', $route->getPath());
@@ -781,7 +781,7 @@ final class RoutesTest extends TestCase
         $this->assertSame('controllerWebMiddleware', $route->getName());
 
         $this->assertNull($route->getModule());
-        $this->assertSame(null, $route->getModule());
+        $this->assertNull($route->getModule());
 
         $this->assertIsString($route->getAction());
         $this->assertSame('Tests\Fixtures\Controller@controllerWebMiddleware', $route->getAction());
@@ -793,17 +793,17 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->getDeprecated());
 
         $this->assertNull($route->getSummary());
-        $this->assertSame(null, $route->getSummary());
+        $this->assertNull($route->getSummary());
 
         $this->assertNull($route->getDescription());
-        $this->assertSame(null, $route->getDescription());
+        $this->assertNull($route->getDescription());
 
         $this->assertIsArray($route->getExceptions()->toArray());
         $this->assertSame([], $route->getExceptions()->toArray());
         $this->assertTrue($route->getExceptions()->isEmpty());
 
         $this->assertNull($route->getResponse());
-        $this->assertSame(null, $route->getResponse());
+        $this->assertNull($route->getResponse());
 
         $this->assertIsBool($route->isApi());
         $this->assertFalse($route->isApi());
