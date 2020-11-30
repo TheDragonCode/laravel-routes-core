@@ -15,7 +15,7 @@
         "source": "https://github.com/andrey-helldar/laravel-routes-core"
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|^8.0",
         "andrey-helldar/support": "^1.24",
         "illuminate/routing": "^5.0|^6.0|^7.0|^8.0",
         "illuminate/support": "^5.0|^6.0|^7.0|^8.0",
