@@ -129,7 +129,7 @@ final class Route implements Arrayable
 
     public function getAction(): string
     {
-        /** @var string|array $action */
+        /** @var array|string $action */
         $action = $this->route->getActionName();
 
         $value = App::isLumen()
