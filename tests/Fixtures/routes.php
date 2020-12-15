@@ -38,3 +38,11 @@ app('router')
 app('router')
     ->get('controllerWebMiddleware', '\Tests\Fixtures\Controller@controllerWebMiddleware')
     ->name('controllerWebMiddleware');
+
+app('router')
+    ->get('closureNullName', static function () {
+    });
+
+app('router')
+    ->get('closure', static function () {
+    })->name('closure');
