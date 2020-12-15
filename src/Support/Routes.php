@@ -128,7 +128,7 @@ final class Routes
     protected function allowUri(string $uri): bool
     {
         foreach ($this->hide_matching as $regex) {
-            if (preg_match($regex, ltrim($uri, '/')) {
+            if (preg_match($regex, ltrim($uri, '/'))) {
                 return false;
             }
         }
