@@ -3,6 +3,7 @@
 namespace Helldar\LaravelRoutesCore\Models;
 
 use Helldar\LaravelRoutesCore\Facades\Annotation;
+use Helldar\LaravelSupport\Facades\App;
 use Helldar\Support\Facades\Arr as ArrHelper;
 use Helldar\Support\Facades\Http;
 use Illuminate\Contracts\Support\Arrayable;
@@ -128,15 +129,23 @@ final class Route implements Arrayable
 
     public function getAction(): string
     {
-        return ltrim($this->route->getActionName(), '\\');
+        /** @var string|array $action */
+        $action = $this->route->getActionName();
+
+        $value = App::isLumen()
+            ? Arr::get($action, 'uses')
+            : $action;
+
+        return ltrim($value, '\\');
     }
 
     public function getMiddlewares(): array
     {
         $middlewares = $this->route->middleware();
+        $method      = 'controllerMiddleware';
 
-        if (method_exists($this->route, 'controllerMiddleware') && is_callable([$this->route, 'controllerMiddleware'])) {
-            $middlewares = array_merge($middlewares, $this->route->controllerMiddleware());
+        if (App::isLaravel() && method_exists($this->route, $method) && is_callable([$this->route, $method])) {
+            $middlewares = array_merge($middlewares, $this->route->{$method}());
         }
 
         return array_values($middlewares);

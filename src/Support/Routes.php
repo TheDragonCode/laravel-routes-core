@@ -3,6 +3,8 @@
 namespace Helldar\LaravelRoutesCore\Support;
 
 use Helldar\LaravelRoutesCore\Models\Route as RouteModel;
+use Helldar\LaravelSupport\Facades\App as Application;
+use Helldar\Support\Facades\Arr;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route as RouteFacade;
@@ -95,9 +97,32 @@ final class Routes
         return $this;
     }
 
+    /**
+     * @return array|\Illuminate\Routing\RouteCollectionInterface
+     */
+    protected function getLaravelRoutes()
+    {
+        return RouteFacade::getRoutes();
+    }
+
+    protected function getLumenRoutes(): array
+    {
+        return array_map(static function (array $route) {
+            $method = Arr::get($route, 'method');
+            $uri    = Arr::get($route, 'uri');
+            $action = Arr::get($route, 'action');
+
+            return (new Route($method, $uri, $action))->uses($action);
+        }, $this->getLaravelRoutes());
+    }
+
     protected function getRoutes(): Collection
     {
-        return collect(RouteFacade::getRoutes());
+        $routes = Application::isLumen()
+            ? $this->getLumenRoutes()
+            : $this->getLaravelRoutes();
+
+        return collect($routes);
     }
 
     protected function allowUri(string $uri): bool
