@@ -136,7 +136,7 @@ final class Route implements Arrayable
             ? Arr::get($action, 'uses')
             : $action;
 
-        return ltrim($value, '\\');
+        return $value ? ltrim($value, '\\') : 'Closure';
     }
 
     public function getMiddlewares(): array
