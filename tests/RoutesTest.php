@@ -5,6 +5,7 @@ namespace Tests;
 use Helldar\LaravelRoutesCore\Facades\Routes;
 use Helldar\LaravelRoutesCore\Models\Route;
 use Illuminate\Support\Arr;
+use Tests\Fixtures\Config;
 
 final class RoutesTest extends TestCase
 {
@@ -55,6 +56,84 @@ final class RoutesTest extends TestCase
     {
         Routes::setApiMiddlewares(['api', 'foo'])
             ->setWebMiddlewares(['web', 'bar'])
+            ->collection()
+            ->each(function (Route $route) {
+                switch ($route->getPath()) {
+                    case 'foo':
+                        $this->routeFoo($route);
+                        break;
+
+                    case 'bar':
+                        $this->routeBar($route);
+                        break;
+
+                    case '_ignition/baq':
+                        $this->routeIgnitionBaq($route);
+                        break;
+
+                    case 'telescope/baw':
+                        $this->routeTelescopeBaw($route);
+                        break;
+
+                    case '_debugbar/bae':
+                        $this->routeDebugBarBae($route);
+                        break;
+
+                    case 'summary':
+                        $this->routeSummary($route);
+                        break;
+
+                    case 'description':
+                        $this->routeDescription($route);
+                        break;
+
+                    case 'deprecated':
+                        $this->routeDeprecated($route);
+                        break;
+
+                    case 'without':
+                        $this->routeWithout($route);
+                        break;
+
+                    case 'withoutDeprecated':
+                        $this->routeWithoutDeprecated($route);
+                        break;
+
+                    case 'routeApiMiddleware':
+                        $this->routeRoutingApiMiddleware($route);
+                        break;
+
+                    case 'controllerApiMiddleware':
+                        $this->routeControllerApiMiddleware($route);
+                        break;
+
+                    case 'routeWebMiddleware':
+                        $this->routeRoutingWebMiddleware($route);
+                        break;
+
+                    case 'controllerWebMiddleware':
+                        $this->routeControllerWebMiddleware($route);
+                        break;
+
+                    case 'closureNullName':
+                        $this->routeClosureNullName($route);
+                        break;
+
+                    case 'closure':
+                        $this->routeClosure($route);
+                        break;
+
+                    default:
+                        $this->assertTrue(false);
+                }
+            });
+    }
+
+    public function testConfig()
+    {
+        $config = new Config();
+
+        Routes::setFromConfig($config)
             ->collection()
             ->each(function (Route $route) {
                 switch ($route->getPath()) {

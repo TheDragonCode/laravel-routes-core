@@ -2,6 +2,7 @@
 
 namespace Helldar\LaravelRoutesCore\Support;
 
+use Helldar\LaravelRoutesCore\Contracts\Config;
 use Helldar\LaravelRoutesCore\Models\Route as RouteModel;
 use Helldar\LaravelSupport\Facades\App as Application;
 use Helldar\Support\Facades\Arr;
@@ -48,49 +49,62 @@ final class Routes
         return $this->collection()->toArray();
     }
 
-    public function setHideMethods(array $methods): self
+    public function setFromConfig(Config $config): self
+    {
+        $this->setApiMiddlewares($config->getApiMiddleware());
+        $this->setWebMiddlewares($config->getWebMiddleware());
+        $this->setHideMethods($config->getHideMethods());
+        $this->setHideMatching($config->getHideMatching());
+        $this->setDomainForce($config->getDomainForce());
+        $this->setUrl($config->getUrl());
+        $this->setNamespace($config->getNamespace());
+
+        return $this;
+    }
+
+    public function setHideMethods(?array $methods): self
     {
         $this->hide_methods = $methods;
 
         return $this;
     }
 
-    public function setHideMatching(array $matching): self
+    public function setHideMatching(?array $matching): self
     {
         $this->hide_matching = $matching;
 
         return $this;
     }
 
-    public function setDomainForce(bool $force = false): self
+    public function setDomainForce(?bool $force = false): self
     {
         $this->domain_force = $force;
 
         return $this;
     }
 
-    public function setUrl(string $url): self
+    public function setUrl(?string $url): self
     {
         $this->url = $url;
 
         return $this;
     }
 
-    public function setNamespace(string $namespace = null): self
+    public function setNamespace(?string $namespace = null): self
     {
         $this->namespace = $namespace;
 
         return $this;
     }
 
-    public function setApiMiddlewares(array $middlewares): self
+    public function setApiMiddlewares(?array $middlewares): self
     {
         $this->api_middlewares = $middlewares;
 
         return $this;
     }
 
-    public function setWebMiddlewares(array $middlewares): self
+    public function setWebMiddlewares(?array $middlewares): self
     {
         $this->web_middlewares = $middlewares;
 

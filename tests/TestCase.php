@@ -9,8 +9,6 @@ abstract class TestCase extends BaseTestCase
 {
     protected function getPackageProviders($app)
     {
-        return [
-            FixtureServiceProvider::class,
-        ];
+        return [FixtureServiceProvider::class];
     }
 }
