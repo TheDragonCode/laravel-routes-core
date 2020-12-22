@@ -57,4 +57,21 @@ trait Assert
             static::assertTrue(is_string($actual), $message);
         }
     }
+
+    /**
+     * Asserts that a variable is of type bool.
+     *
+     * @throws ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     *
+     * @psalm-assert bool $actual
+     */
+    public static function assertIsBool($actual, string $message = ''): void
+    {
+        if (method_exists(parent::class, 'assertIsBool')) {
+            parent::assertIsBool($actual, $message);
+        } else {
+            static::assertTrue(is_bool($actual), $message);
+        }
+    }
 }
