@@ -34,10 +34,27 @@ trait Assert
      */
     public static function assertIsInt($actual, string $message = ''): void
     {
-        if (method_exists(parent::class, 'assertIsArray')) {
+        if (method_exists(parent::class, 'assertIsInt')) {
             parent::assertIsInt($actual, $message);
         } else {
             static::assertTrue(is_int($actual), $message);
+        }
+    }
+
+    /**
+     * Asserts that a variable is of type string.
+     *
+     * @throws ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     *
+     * @psalm-assert string $actual
+     */
+    public static function assertIsString($actual, string $message = ''): void
+    {
+        if (method_exists(parent::class, 'assertIsString')) {
+            parent::assertIsString($actual, $message);
+        } else {
+            static::assertTrue(is_string($actual), $message);
         }
     }
 }
