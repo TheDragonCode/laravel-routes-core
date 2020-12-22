@@ -44,6 +44,11 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "extra": {
+        "laravel": {
+            "providers": [
+                "Helldar\\LaravelRoutesCore\\ServiceProvider"
+            ]
+        },
         "thanks": [
             {
                 "name": "andrey-helldar/support",
