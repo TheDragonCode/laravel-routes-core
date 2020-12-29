@@ -5,7 +5,7 @@ namespace Helldar\LaravelRoutesCore\Support;
 use Helldar\LaravelRoutesCore\Contracts\Config;
 use Helldar\LaravelRoutesCore\Models\Route as RouteModel;
 use Helldar\LaravelSupport\Facades\App as Application;
-use Helldar\Support\Facades\Arr;
+use Helldar\Support\Facades\Helpers\Arr;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route as RouteFacade;
