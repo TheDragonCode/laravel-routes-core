@@ -5,7 +5,8 @@ namespace Helldar\LaravelRoutesCore\Models;
 use Helldar\LaravelRoutesCore\Facades\Annotation;
 use Helldar\LaravelSupport\Facades\App;
 use Helldar\Support\Facades\Helpers\Arr as ArrHelper;
-use Helldar\Support\Facades\Helpers\Http;
+use Helldar\Support\Facades\Http\Builder;
+use Helldar\Support\Facades\Http\Url;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Routing\Route as IlluminateRoute;
 use Illuminate\Support\Arr;
@@ -102,8 +103,8 @@ final class Route implements Arrayable
             return $domain;
         }
 
-        return $this->domain_force
-            ? Http::domain($this->url)
+        return $this->domain_force && Url::is($this->url)
+            ? Builder::parse($this->url)->getDomain()
             : null;
     }
 

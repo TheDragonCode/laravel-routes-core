@@ -28,7 +28,7 @@ final class Config implements ConfigContract
 
     public function getDomainForce(): bool
     {
-        return false;
+        return true;
     }
 
     public function getUrl(): ?string
