@@ -69,4 +69,11 @@ final class Controller extends BaseController
     public function controllerWebMiddleware()
     {
     }
+
+    /**
+     * @return
+     */
+    public function incorrectDocBlock()
+    {
+    }
 }

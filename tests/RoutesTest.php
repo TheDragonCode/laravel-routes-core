@@ -99,6 +99,10 @@ final class RoutesTest extends TestCase
                         $this->routeWithoutDeprecated($route);
                         break;
 
+                    case 'incorrectDocBlock':
+                        $this->routeIncorrectDocBlock($route);
+                        break;
+
                     case 'routeApiMiddleware':
                         $this->routeRoutingApiMiddleware($route);
                         break;
@@ -175,6 +179,10 @@ final class RoutesTest extends TestCase
 
                     case 'withoutDeprecated':
                         $this->routeWithoutDeprecated($route);
+                        break;
+
+                    case 'incorrectDocBlock':
+                        $this->routeIncorrectDocBlock($route);
                         break;
 
                     case 'routeApiMiddleware':
@@ -641,10 +649,53 @@ final class RoutesTest extends TestCase
         $this->assertFalse($route->isWeb());
     }
 
-    protected function routeRoutingApiMiddleware(Route $route)
+    protected function routeIncorrectDocBlock(Route $route)
     {
         $this->assertIsInt($route->getPriority());
         $this->assertSame(11, $route->getPriority());
+
+        $this->assertIsArray($route->getMethods());
+        $this->assertSame(['GET', 'HEAD'], $route->getMethods());
+
+        $this->assertNull($route->getDomain());
+
+        $this->assertIsString($route->getPath());
+        $this->assertSame('incorrectDocBlock', $route->getPath());
+
+        $this->assertIsString($route->getName());
+        $this->assertSame('incorrectDocBlock', $route->getName());
+
+        $this->assertNull($route->getModule());
+
+        $this->assertIsString($route->getAction());
+        $this->assertSame('Tests\Fixtures\Controller@incorrectDocBlock', $route->getAction());
+
+        $this->assertIsArray($route->getMiddlewares());
+        $this->assertSame([], $route->getMiddlewares());
+
+        $this->assertIsBool($route->getDeprecated());
+        $this->assertFalse($route->getDeprecated());
+
+        $this->assertNull($route->getSummary());
+        $this->assertNull($route->getDescription());
+
+        $this->assertIsArray($route->getExceptions()->toArray());
+        $this->assertSame([], $route->getExceptions()->toArray());
+        $this->assertTrue($route->getExceptions()->isEmpty());
+
+        $this->assertNull($route->getResponse());
+
+        $this->assertIsBool($route->isApi());
+        $this->assertFalse($route->isApi());
+
+        $this->assertIsBool($route->isWeb());
+        $this->assertFalse($route->isWeb());
+    }
+
+    protected function routeRoutingApiMiddleware(Route $route)
+    {
+        $this->assertIsInt($route->getPriority());
+        $this->assertSame(12, $route->getPriority());
 
         $this->assertIsArray($route->getMethods());
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
@@ -687,7 +738,7 @@ final class RoutesTest extends TestCase
     protected function routeControllerApiMiddleware(Route $route)
     {
         $this->assertIsInt($route->getPriority());
-        $this->assertSame(12, $route->getPriority());
+        $this->assertSame(13, $route->getPriority());
 
         $this->assertIsArray($route->getMethods());
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
@@ -730,7 +781,7 @@ final class RoutesTest extends TestCase
     protected function routeRoutingWebMiddleware(Route $route)
     {
         $this->assertIsInt($route->getPriority());
-        $this->assertSame(13, $route->getPriority());
+        $this->assertSame(14, $route->getPriority());
 
         $this->assertIsArray($route->getMethods());
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
@@ -772,7 +823,7 @@ final class RoutesTest extends TestCase
     protected function routeControllerWebMiddleware(Route $route)
     {
         $this->assertIsInt($route->getPriority());
-        $this->assertSame(14, $route->getPriority());
+        $this->assertSame(15, $route->getPriority());
 
         $this->assertIsArray($route->getMethods());
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
@@ -815,7 +866,7 @@ final class RoutesTest extends TestCase
     protected function routeClosureNullName(Route $route)
     {
         $this->assertIsInt($route->getPriority());
-        $this->assertSame(15, $route->getPriority());
+        $this->assertSame(16, $route->getPriority());
 
         $this->assertIsArray($route->getMethods());
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());
@@ -856,7 +907,7 @@ final class RoutesTest extends TestCase
     protected function routeClosure(Route $route)
     {
         $this->assertIsInt($route->getPriority());
-        $this->assertSame(16, $route->getPriority());
+        $this->assertSame(17, $route->getPriority());
 
         $this->assertIsArray($route->getMethods());
         $this->assertSame(['GET', 'HEAD'], $route->getMethods());

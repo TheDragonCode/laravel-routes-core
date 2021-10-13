@@ -20,6 +20,7 @@ app('router')->get('description', '\Tests\Fixtures\Controller@description')->nam
 app('router')->get('deprecated', '\Tests\Fixtures\Controller@deprecated')->name('deprecated');
 app('router')->get('without', '\Tests\Fixtures\Controller@without')->name('without');
 app('router')->get('withoutDeprecated', '\Tests\Fixtures\Controller@withoutDeprecated')->name('withoutDeprecated');
+app('router')->get('incorrectDocBlock', '\Tests\Fixtures\Controller@incorrectDocBlock')->name('incorrectDocBlock');
 
 app('router')
     ->middleware('api')

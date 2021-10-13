@@ -5,6 +5,7 @@ namespace Helldar\LaravelRoutesCore\Support;
 use Helldar\LaravelRoutesCore\Models\Reader;
 use Helldar\LaravelRoutesCore\Models\Tags\Returns;
 use Helldar\LaravelRoutesCore\Models\Tags\Throws;
+use Helldar\Support\Facades\Helpers\Instance;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use phpDocumentor\Reflection\DocBlock;
@@ -58,10 +59,10 @@ final class Annotation
      */
     public function exceptions(string $controller, string $method = null): Collection
     {
-        $callback = static function (DocBlock $doc) {
+        $callback = function (DocBlock $doc) {
             return array_map(static function (DocBlock\Tags\Throws $tag) {
                 return Throws::make($tag);
-            }, $doc->getTagsByName('throws'));
+            }, $this->getTagsByName($doc, 'throws'));
         };
 
         $reader = $this->reader($controller, $method);
@@ -85,10 +86,10 @@ final class Annotation
      */
     public function response(string $controller, string $method = null): ?Returns
     {
-        return $this->get(static function (DocBlock $doc) {
+        return $this->get(function (DocBlock $doc) {
             $returns = array_map(static function (DocBlock\Tags\Return_ $tag) {
                 return Returns::make($tag);
-            }, $doc->getTagsByName('return'));
+            }, $this->getTagsByName($doc, 'return'));
 
             return Arr::first($returns);
         }, $controller, $method);
@@ -116,5 +117,12 @@ final class Annotation
         }
 
         return $default;
+    }
+
+    protected function getTagsByName(DocBlock $doc, string $name): array
+    {
+        return array_filter($doc->getTagsByName($name), static function ($tag) {
+            return ! Instance::of($tag, DocBlock\Tags\InvalidTag::class);
+        });
     }
 }
