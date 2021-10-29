@@ -1,5 +1,7 @@
 # Laravel Routes Core
 
+<img src="https://preview.dragon-code.pro/TheDragonCode/routes-core.svg?brand=laravel" alt="Laravel Routes Core"/>
+
 The core of applications for working with routes:
 
 * [laravel-routes-core](https://github.com/andrey-helldar/laravel-routes-core)
