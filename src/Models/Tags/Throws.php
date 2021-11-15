@@ -5,7 +5,7 @@ namespace Helldar\LaravelRoutesCore\Models\Tags;
 use phpDocumentor\Reflection\DocBlock\Tag as DocTag;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-final class Throws extends BaseTag
+class Throws extends BaseTag
 {
     /**
      * @param  \phpDocumentor\Reflection\DocBlock\Tag|\phpDocumentor\Reflection\DocBlock\Tags\Throws  $tag

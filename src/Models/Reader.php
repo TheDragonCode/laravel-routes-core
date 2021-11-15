@@ -9,7 +9,7 @@ use phpDocumentor\Reflection\DocBlockFactory;
 use ReflectionClass;
 use Reflector;
 
-final class Reader
+class Reader
 {
     use Makeable;
 

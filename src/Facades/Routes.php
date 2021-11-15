@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Support setWebMiddlewares(?array $middlewares)
  * @method static Support setFromConfig(Config $config)
  */
-final class Routes extends Facade
+class Routes extends Facade
 {
     protected static function getFacadeAccessor()
     {

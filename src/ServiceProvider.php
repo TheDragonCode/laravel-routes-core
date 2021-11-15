@@ -4,7 +4,7 @@ namespace Helldar\LaravelRoutesCore;
 
 use Illuminate\Support\Str;
 
-final class ServiceProvider extends \Illuminate\Support\ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function register()
     {

@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use phpDocumentor\Reflection\DocBlock;
 
-final class Annotation
+class Annotation
 {
     /**
      * @param  string  $controller

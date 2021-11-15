@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Throws[] exceptions(string $controller, string $method = null)
  * @method static Returns[] response(string $controller, string $method = null)
  */
-final class Annotation extends Facade
+class Annotation extends Facade
 {
     protected static function getFacadeAccessor()
     {

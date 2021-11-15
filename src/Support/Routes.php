@@ -10,7 +10,7 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route as RouteFacade;
 
-final class Routes
+class Routes
 {
     protected $hide_methods = [];
 

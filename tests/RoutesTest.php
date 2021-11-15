@@ -7,7 +7,7 @@ use Helldar\LaravelRoutesCore\Models\Route;
 use Illuminate\Support\Arr;
 use Tests\Fixtures\Config;
 
-final class RoutesTest extends TestCase
+class RoutesTest extends TestCase
 {
     public function testStructure()
     {

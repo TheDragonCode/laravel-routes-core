@@ -13,7 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-final class Route implements Arrayable
+class Route implements Arrayable
 {
     /** @var \Illuminate\Routing\Route */
     protected $route;

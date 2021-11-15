@@ -5,7 +5,7 @@ namespace Tests;
 use Helldar\LaravelRoutesCore\Facades\Routes;
 use Helldar\LaravelRoutesCore\Models\Route;
 
-final class AnnotationsTest extends TestCase
+class AnnotationsTest extends TestCase
 {
     public function testSummary()
     {
