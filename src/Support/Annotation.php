@@ -1,11 +1,11 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Support;
+namespace DragonCode\LaravelRoutesCore\Support;
 
-use Helldar\LaravelRoutesCore\Models\Reader;
-use Helldar\LaravelRoutesCore\Models\Tags\Returns;
-use Helldar\LaravelRoutesCore\Models\Tags\Throws;
-use Helldar\Support\Facades\Helpers\Instance;
+use DragonCode\LaravelRoutesCore\Models\Reader;
+use DragonCode\LaravelRoutesCore\Models\Tags\Returns;
+use DragonCode\LaravelRoutesCore\Models\Tags\Throws;
+use DragonCode\Support\Facades\Helpers\Instance;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use phpDocumentor\Reflection\DocBlock;
@@ -55,7 +55,7 @@ class Annotation
      * @param  string  $controller
      * @param  string|null  $method
      *
-     * @return \Helldar\LaravelRoutesCore\Models\Tags\Throws[]|\Illuminate\Support\Collection
+     * @return \DragonCode\LaravelRoutesCore\Models\Tags\Throws[]|\Illuminate\Support\Collection
      */
     public function exceptions(string $controller, string $method = null): Collection
     {
@@ -82,7 +82,7 @@ class Annotation
      * @param  string  $controller
      * @param  string|null  $method
      *
-     * @return \Helldar\LaravelRoutesCore\Models\Tags\Returns|null
+     * @return \DragonCode\LaravelRoutesCore\Models\Tags\Returns|null
      */
     public function response(string $controller, string $method = null): ?Returns
     {

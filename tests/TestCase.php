@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use Helldar\LaravelRoutesCore\ServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Tests\ExtendedTests\Assert;
 use Tests\Fixtures\ServiceProvider as FixtureServiceProvider;
@@ -11,11 +10,8 @@ abstract class TestCase extends BaseTestCase
 {
     use Assert;
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
-        return [
-            FixtureServiceProvider::class,
-            ServiceProvider::class,
-        ];
+        return [FixtureServiceProvider::class];
     }
 }

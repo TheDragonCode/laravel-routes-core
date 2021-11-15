@@ -2,7 +2,7 @@
 
 namespace Tests\Fixtures;
 
-use Helldar\LaravelRoutesCore\Contracts\Config as ConfigContract;
+use DragonCode\Contracts\Routing\Core\Config as ConfigContract;
 
 class Config implements ConfigContract
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Models\Tags;
+namespace DragonCode\LaravelRoutesCore\Models\Tags;
 
 use phpDocumentor\Reflection\DocBlock\Tag as DocTag;
 use Symfony\Component\HttpKernel\Exception\HttpException;

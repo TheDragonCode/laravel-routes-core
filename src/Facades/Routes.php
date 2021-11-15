@@ -1,9 +1,9 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Facades;
+namespace DragonCode\LaravelRoutesCore\Facades;
 
-use Helldar\LaravelRoutesCore\Contracts\Config;
-use Helldar\LaravelRoutesCore\Support\Routes as Support;
+use DragonCode\Contracts\Routing\Core\Config;
+use DragonCode\LaravelRoutesCore\Support\Routes as Support;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 

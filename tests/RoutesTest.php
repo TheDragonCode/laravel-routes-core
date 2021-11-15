@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Helldar\LaravelRoutesCore\Facades\Routes;
-use Helldar\LaravelRoutesCore\Models\Route;
+use DragonCode\LaravelRoutesCore\Facades\Routes;
+use DragonCode\LaravelRoutesCore\Models\Route;
 use Illuminate\Support\Arr;
 use Tests\Fixtures\Config;
 
