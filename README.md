@@ -4,7 +4,7 @@
 
 The core of applications for working with routes:
 
-* [dragon-code/laravel-pretty-routes](https://github.com/TheDragonCode/pretty-routes)
+* [dragon-code/pretty-routes](https://github.com/TheDragonCode/pretty-routes)
 * [dragon-code/laravel-swagger](https://github.com/TheDragonCode/laravel-swagger)
 
 [![Stable Version][badge_stable]][link_packagist]
