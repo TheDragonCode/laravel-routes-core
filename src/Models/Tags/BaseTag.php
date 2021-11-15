@@ -1,9 +1,9 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Models\Tags;
+namespace DragonCode\LaravelRoutesCore\Models\Tags;
 
-use Helldar\LaravelRoutesCore\Contracts\Tag;
-use Helldar\LaravelRoutesCore\Traits\Makeable;
+use DragonCode\Contracts\Routing\Core\Tag;
+use DragonCode\LaravelRoutesCore\Traits\Makeable;
 use Illuminate\Support\Arr;
 use phpDocumentor\Reflection\DocBlock\Tag as DocTag;
 

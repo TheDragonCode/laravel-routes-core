@@ -1,10 +1,10 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Facades;
+namespace DragonCode\LaravelRoutesCore\Facades;
 
-use Helldar\LaravelRoutesCore\Models\Tags\Returns;
-use Helldar\LaravelRoutesCore\Models\Tags\Throws;
-use Helldar\LaravelRoutesCore\Support\Annotation as Support;
+use DragonCode\LaravelRoutesCore\Models\Tags\Returns;
+use DragonCode\LaravelRoutesCore\Models\Tags\Throws;
+use DragonCode\LaravelRoutesCore\Support\Annotation as Support;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Throws[] exceptions(string $controller, string $method = null)
  * @method static Returns[] response(string $controller, string $method = null)
  */
-final class Annotation extends Facade
+class Annotation extends Facade
 {
     protected static function getFacadeAccessor()
     {

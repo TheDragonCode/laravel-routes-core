@@ -1,12 +1,12 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Models\Tags;
+namespace DragonCode\LaravelRoutesCore\Models\Tags;
 
 use phpDocumentor\Reflection\DocBlock\Tag as DocTag;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-final class Returns extends BaseTag
+class Returns extends BaseTag
 {
     public function setDescription(DocTag $tag): void
     {

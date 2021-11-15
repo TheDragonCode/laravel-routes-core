@@ -1,6 +1,6 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Traits;
+namespace DragonCode\LaravelRoutesCore\Traits;
 
 trait Makeable
 {

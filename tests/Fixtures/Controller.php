@@ -4,7 +4,7 @@ namespace Tests\Fixtures;
 
 use Illuminate\Routing\Controller as BaseController;
 
-final class Controller extends BaseController
+class Controller extends BaseController
 {
     public function __construct()
     {

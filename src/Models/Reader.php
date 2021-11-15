@@ -1,15 +1,15 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Models;
+namespace DragonCode\LaravelRoutesCore\Models;
 
-use Helldar\LaravelRoutesCore\Traits\Makeable;
+use DragonCode\LaravelRoutesCore\Traits\Makeable;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
 use ReflectionClass;
 use Reflector;
 
-final class Reader
+class Reader
 {
     use Makeable;
 

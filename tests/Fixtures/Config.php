@@ -2,9 +2,9 @@
 
 namespace Tests\Fixtures;
 
-use Helldar\LaravelRoutesCore\Contracts\Config as ConfigContract;
+use DragonCode\Contracts\Routing\Core\Config as ConfigContract;
 
-final class Config implements ConfigContract
+class Config implements ConfigContract
 {
     public function getApiMiddleware(): array
     {

@@ -1,19 +1,19 @@
 <?php
 
-namespace Helldar\LaravelRoutesCore\Models;
+namespace DragonCode\LaravelRoutesCore\Models;
 
-use Helldar\LaravelRoutesCore\Facades\Annotation;
-use Helldar\LaravelSupport\Facades\App;
-use Helldar\Support\Facades\Helpers\Arr as ArrHelper;
-use Helldar\Support\Facades\Http\Builder;
-use Helldar\Support\Facades\Http\Url;
+use DragonCode\LaravelRoutesCore\Facades\Annotation;
+use DragonCode\LaravelSupport\Facades\App;
+use DragonCode\Support\Facades\Helpers\Arr as ArrHelper;
+use DragonCode\Support\Facades\Http\Builder;
+use DragonCode\Support\Facades\Http\Url;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Routing\Route as IlluminateRoute;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-final class Route implements Arrayable
+class Route implements Arrayable
 {
     /** @var \Illuminate\Routing\Route */
     protected $route;
