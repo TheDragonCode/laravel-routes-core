@@ -20,16 +20,16 @@
     },
     "require": {
         "php": "^7.3 || ^8.0",
-        "dragon-code/contracts": "^2.4",
-        "dragon-code/laravel-support": "^3.0",
-        "dragon-code/support": "^5.0",
-        "illuminate/routing": "^6.0 || ^7.0 || ^8.0",
-        "illuminate/support": "^6.0 || ^7.0 || ^8.0",
+        "dragon-code/contracts": "^2.6",
+        "dragon-code/laravel-support": "^3.2",
+        "dragon-code/support": "^5.6",
+        "illuminate/routing": "^6.0 || ^7.0 || ^8.0 || ^9.0",
+        "illuminate/support": "^6.0 || ^7.0 || ^8.0 || ^9.0",
         "phpdocumentor/reflection-docblock": "^5.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.0",
-        "orchestra/testbench": "^4.0 || ^5.0 || ^6.0",
+        "orchestra/testbench": "^4.0 || ^5.0 || ^6.0 || ^7.0",
         "phpunit/phpunit": "^8.0 || ^9.0"
     },
     "conflict": {
