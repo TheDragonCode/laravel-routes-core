@@ -18,9 +18,9 @@ class Routes
 
     protected $domain_force = false;
 
-    protected $url = null;
+    protected $url;
 
-    protected $namespace = null;
+    protected $namespace;
 
     protected $api_middlewares = [];
 

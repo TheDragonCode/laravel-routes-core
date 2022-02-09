@@ -7,7 +7,7 @@ trait Makeable
     /**
      * Creates a class instance.
      *
-     * @param  mixed  ...$parameters
+     * @param mixed ...$parameters
      *
      * @return static
      */

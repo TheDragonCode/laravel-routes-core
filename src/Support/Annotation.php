@@ -13,12 +13,12 @@ use phpDocumentor\Reflection\DocBlock;
 class Annotation
 {
     /**
-     * @param  string  $controller
-     * @param  string|null  $method
+     * @param string $controller
+     * @param string|null $method
      *
      * @return string|null
      */
-    public function summary(string $controller, string $method = null): ?string
+    public function summary(string $controller, ?string $method = null): ?string
     {
         return $this->get(static function (DocBlock $doc) {
             return $doc->getSummary();
@@ -26,12 +26,12 @@ class Annotation
     }
 
     /**
-     * @param  string  $controller
-     * @param  string|null  $method
+     * @param string $controller
+     * @param string|null $method
      *
      * @return string|null
      */
-    public function description(string $controller, string $method = null): ?string
+    public function description(string $controller, ?string $method = null): ?string
     {
         return $this->get(static function (DocBlock $doc) {
             return $doc->getDescription()->getBodyTemplate();
@@ -39,12 +39,12 @@ class Annotation
     }
 
     /**
-     * @param  string  $controller
-     * @param  string|null  $method
+     * @param string $controller
+     * @param string|null $method
      *
      * @return bool
      */
-    public function isDeprecated(string $controller, string $method = null)
+    public function isDeprecated(string $controller, ?string $method = null)
     {
         return (bool) $this->get(static function (DocBlock $doc) {
             return $doc->hasTag('deprecated');
@@ -52,12 +52,12 @@ class Annotation
     }
 
     /**
-     * @param  string  $controller
-     * @param  string|null  $method
+     * @param string $controller
+     * @param string|null $method
      *
      * @return \DragonCode\LaravelRoutesCore\Models\Tags\Throws[]|\Illuminate\Support\Collection
      */
-    public function exceptions(string $controller, string $method = null): Collection
+    public function exceptions(string $controller, ?string $method = null): Collection
     {
         $callback = function (DocBlock $doc) {
             return array_map(static function (DocBlock\Tags\Throws $tag) {
@@ -79,12 +79,12 @@ class Annotation
     }
 
     /**
-     * @param  string  $controller
-     * @param  string|null  $method
+     * @param string $controller
+     * @param string|null $method
      *
      * @return \DragonCode\LaravelRoutesCore\Models\Tags\Returns|null
      */
-    public function response(string $controller, string $method = null): ?Returns
+    public function response(string $controller, ?string $method = null): ?Returns
     {
         return $this->get(function (DocBlock $doc) {
             $returns = array_map(static function (DocBlock\Tags\Return_ $tag) {
@@ -95,12 +95,12 @@ class Annotation
         }, $controller, $method);
     }
 
-    protected function reader(string $controller, string $method = null): Reader
+    protected function reader(string $controller, ?string $method = null): Reader
     {
         return Reader::make($controller, $method);
     }
 
-    protected function get(callable $callback, string $controller, string $method = null)
+    protected function get(callable $callback, string $controller, ?string $method = null)
     {
         $reader = $this->reader($controller, $method);
 
@@ -110,7 +110,7 @@ class Annotation
 
     protected function getValue(callable $callback, Reader $reader, string $method, $default = null)
     {
-        if ($block = $reader->$method()) {
+        if ($block = $reader->{$method}()) {
             if ($value = $callback($block)) {
                 return $value;
             }

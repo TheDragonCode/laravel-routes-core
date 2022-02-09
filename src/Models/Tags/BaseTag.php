@@ -19,6 +19,10 @@ abstract class BaseTag implements Tag
 
     protected $sources = [];
 
+    abstract public function setCode(): void;
+
+    abstract public function setDescription(DocTag $tag): void;
+
     public function __construct(DocTag $tag)
     {
         $this->setClass($tag);
@@ -31,15 +35,13 @@ abstract class BaseTag implements Tag
         return $this->code;
     }
 
-    abstract public function setCode(): void;
-
     public function getClass(): string
     {
         return $this->class;
     }
 
     /**
-     * @param  \phpDocumentor\Reflection\DocBlock\Tag  $tag
+     * @param \phpDocumentor\Reflection\DocBlock\Tag $tag
      */
     public function setClass(DocTag $tag): void
     {
@@ -50,8 +52,6 @@ abstract class BaseTag implements Tag
     {
         return $this->description;
     }
-
-    abstract public function setDescription(DocTag $tag): void;
 
     public function setSources(array $items): Tag
     {

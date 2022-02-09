@@ -10,10 +10,13 @@ trait Assert
     /**
      * Asserts that a variable is of type array.
      *
+     * @psalm-assert array $actual
+     *
+     * @param mixed $actual
+     * @param string $message
+     *
      * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
-     * @psalm-assert array $actual
      */
     public static function assertIsArray($actual, string $message = ''): void
     {
@@ -27,10 +30,13 @@ trait Assert
     /**
      * Asserts that a variable is of type int.
      *
+     * @psalm-assert int $actual
+     *
+     * @param mixed $actual
+     * @param string $message
+     *
      * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
-     * @psalm-assert int $actual
      */
     public static function assertIsInt($actual, string $message = ''): void
     {
@@ -44,10 +50,13 @@ trait Assert
     /**
      * Asserts that a variable is of type string.
      *
+     * @psalm-assert string $actual
+     *
+     * @param mixed $actual
+     * @param string $message
+     *
      * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
-     * @psalm-assert string $actual
      */
     public static function assertIsString($actual, string $message = ''): void
     {
@@ -61,10 +70,13 @@ trait Assert
     /**
      * Asserts that a variable is of type bool.
      *
+     * @psalm-assert bool $actual
+     *
+     * @param mixed $actual
+     * @param string $message
+     *
      * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
-     * @psalm-assert bool $actual
      */
     public static function assertIsBool($actual, string $message = ''): void
     {

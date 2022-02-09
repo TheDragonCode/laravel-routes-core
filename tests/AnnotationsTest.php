@@ -23,9 +23,9 @@ class AnnotationsTest extends TestCase
         $this->assertEquals('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo.', $route->getSummary());
 
         $this->assertEquals(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" .
-            "Pellentesque lorem libero, ultricies ut nisl in, vestibulum egestas neque.\n" .
-            'Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.',
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n"
+            . "Pellentesque lorem libero, ultricies ut nisl in, vestibulum egestas neque.\n"
+            . 'Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.',
             $route->getDescription()
         );
 
@@ -39,9 +39,9 @@ class AnnotationsTest extends TestCase
         $this->assertEquals('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo.', $route->getSummary());
 
         $this->assertEquals(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n" .
-            "Pellentesque lorem libero, ultricies ut nisl in, vestibulum egestas neque.\n" .
-            'Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.',
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n"
+            . "Pellentesque lorem libero, ultricies ut nisl in, vestibulum egestas neque.\n"
+            . 'Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.',
             $route->getDescription()
         );
 
@@ -72,7 +72,7 @@ class AnnotationsTest extends TestCase
     {
         return Routes::collection()
             ->filter(static function (Route $route) use ($name) {
-                return $route->getName() === $name;
+                return $name === $route->getName();
             })->first();
     }
 }

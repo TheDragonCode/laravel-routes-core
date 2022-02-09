@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
 use ReflectionClass;
+use ReflectionException;
+use ReflectionMethod;
 use Reflector;
 
 class Reader
@@ -17,14 +19,14 @@ class Reader
 
     protected $method;
 
-    public function __construct(string $controller, string $method = null)
+    public function __construct(string $controller, ?string $method = null)
     {
         $this->controller = $controller;
         $this->method     = $method;
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      *
      * @return \phpDocumentor\Reflection\DocBlock|null
      */
@@ -38,7 +40,7 @@ class Reader
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      *
      * @return \phpDocumentor\Reflection\DocBlock|null
      */
@@ -53,11 +55,11 @@ class Reader
     }
 
     /**
-     * @param  \Reflector|null  $reflection
+     * @param Reflector|null $reflection
      *
      * @return \phpDocumentor\Reflection\DocBlock|null
      */
-    protected function get(Reflector $reflection = null): ?DocBlock
+    protected function get(?Reflector $reflection = null): ?DocBlock
     {
         if ($reflection && $comment = $reflection->getDocComment()) {
             return DocBlockFactory::createInstance()->create($comment);
@@ -80,11 +82,11 @@ class Reader
     /**
      * Getting class reflection instance.
      *
-     * @param  string  $class
+     * @param string $class
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      *
-     * @return \ReflectionClass
+     * @return ReflectionClass
      */
     protected function reflectionClass(string $class)
     {
@@ -94,12 +96,12 @@ class Reader
     /**
      * Getting method reflection instance from reflection class.
      *
-     * @param  \ReflectionClass  $class
-     * @param  string  $method
+     * @param ReflectionClass $class
+     * @param string $method
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      *
-     * @return \ReflectionMethod|null
+     * @return ReflectionMethod|null
      */
     protected function reflectionMethod(ReflectionClass $class, string $method)
     {
