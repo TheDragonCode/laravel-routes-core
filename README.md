@@ -13,11 +13,6 @@ The core of applications for working with routes:
 [![Github Workflow Status][badge_build]][link_build]
 [![License][badge_license]][link_license]
 
-## Upgrade from `andrey-helldar/laravel-routes-core`
-
-1. Replace `"andrey-helldar/laravel-routes-core": "^3.0"` with `"dragon-code/laravel-routes-core": "^4.0"` in the `composer.json` file;
-2. Replace `Helldar\LaravelRoutesCore` with `DragonCode\LaravelRoutesCore`;
-3. Run the `composer update` console command.
 
 ## License
 
