@@ -5,10 +5,13 @@ namespace DragonCode\LaravelRoutesCore\Support;
 use DragonCode\LaravelRoutesCore\Models\Reader;
 use DragonCode\LaravelRoutesCore\Models\Tags\Returns;
 use DragonCode\LaravelRoutesCore\Models\Tags\Throws;
-use DragonCode\Support\Facades\Helpers\Instance;
+use DragonCode\Support\Facades\Instances\Instance;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlock\Tags\InvalidTag;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use phpDocumentor\Reflection\DocBlock\Tags\Throws as DocThrows;
 
 class Annotation
 {
@@ -44,11 +47,9 @@ class Annotation
      *
      * @return bool
      */
-    public function isDeprecated(string $controller, ?string $method = null)
+    public function isDeprecated(string $controller, ?string $method = null): bool
     {
-        return (bool) $this->get(static function (DocBlock $doc) {
-            return $doc->hasTag('deprecated');
-        }, $controller, $method);
+        return (bool) $this->get(static fn (DocBlock $doc) => $doc->hasTag('deprecated'), $controller, $method);
     }
 
     /**
@@ -59,11 +60,7 @@ class Annotation
      */
     public function exceptions(string $controller, ?string $method = null): Collection
     {
-        $callback = function (DocBlock $doc) {
-            return array_map(static function (DocBlock\Tags\Throws $tag) {
-                return Throws::make($tag);
-            }, $this->getTagsByName($doc, 'throws'));
-        };
+        $callback = fn (DocBlock $doc) => array_map(static fn (DocThrows $tag) => Throws::make($tag), $this->getTagsByName($doc, 'throws'));
 
         $reader = $this->reader($controller, $method);
 
@@ -78,18 +75,10 @@ class Annotation
             ->filter();
     }
 
-    /**
-     * @param string $controller
-     * @param string|null $method
-     *
-     * @return \DragonCode\LaravelRoutesCore\Models\Tags\Returns|null
-     */
     public function response(string $controller, ?string $method = null): ?Returns
     {
         return $this->get(function (DocBlock $doc) {
-            $returns = array_map(static function (DocBlock\Tags\Return_ $tag) {
-                return Returns::make($tag);
-            }, $this->getTagsByName($doc, 'return'));
+            $returns = array_map(static fn (Return_ $tag) => Returns::make($tag), $this->getTagsByName($doc, 'return'));
 
             return Arr::first($returns);
         }, $controller, $method);
@@ -122,7 +111,7 @@ class Annotation
     protected function getTagsByName(DocBlock $doc, string $name): array
     {
         return array_filter($doc->getTagsByName($name), static function ($tag) {
-            return ! Instance::of($tag, DocBlock\Tags\InvalidTag::class);
+            return ! Instance::of($tag, InvalidTag::class);
         });
     }
 }

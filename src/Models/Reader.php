@@ -2,12 +2,11 @@
 
 namespace DragonCode\LaravelRoutesCore\Models;
 
-use DragonCode\LaravelRoutesCore\Traits\Makeable;
-use Illuminate\Support\Str;
+use DragonCode\Support\Concerns\Makeable;
+use DragonCode\Support\Facades\Helpers\Str;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
 use ReflectionClass;
-use ReflectionException;
 use ReflectionMethod;
 use Reflector;
 
@@ -15,22 +14,13 @@ class Reader
 {
     use Makeable;
 
-    protected $controller;
-
-    protected $method;
-
-    public function __construct(string $controller, ?string $method = null)
-    {
-        $this->controller = $controller;
-        $this->method     = $method;
+    public function __construct(
+        protected string $controller,
+        protected ?string $method = null
+    ) {
     }
 
-    /**
-     * @throws ReflectionException
-     *
-     * @return \phpDocumentor\Reflection\DocBlock|null
-     */
-    public function forClass()
+    public function forClass(): ?DocBlock
     {
         [$controller, $method] = $this->parse();
 
@@ -39,12 +29,7 @@ class Reader
         );
     }
 
-    /**
-     * @throws ReflectionException
-     *
-     * @return \phpDocumentor\Reflection\DocBlock|null
-     */
-    public function forMethod()
+    public function forMethod(): ?DocBlock
     {
         [$controller, $method] = $this->parse();
 
@@ -54,11 +39,6 @@ class Reader
             ) : null;
     }
 
-    /**
-     * @param Reflector|null $reflection
-     *
-     * @return \phpDocumentor\Reflection\DocBlock|null
-     */
     protected function get(?Reflector $reflection = null): ?DocBlock
     {
         if ($reflection && $comment = $reflection->getDocComment()) {
@@ -71,42 +51,23 @@ class Reader
     protected function parse(): array
     {
         if (is_null($this->method)) {
-            return Str::contains($this->controller, '@')
-                ? [Str::before($this->controller, '@'), Str::after($this->controller, '@')]
-                : [$this->controller, null];
+            if (Str::contains($this->controller, '@')) {
+                return [Str::before($this->controller, '@'), Str::after($this->controller, '@')];
+            }
+
+            return [$this->controller, null];
         }
 
         return [$this->controller, $this->method];
     }
 
-    /**
-     * Getting class reflection instance.
-     *
-     * @param string $class
-     *
-     * @throws ReflectionException
-     *
-     * @return ReflectionClass
-     */
-    protected function reflectionClass(string $class)
+    protected function reflectionClass(string $class): ReflectionClass
     {
         return new ReflectionClass($class);
     }
 
-    /**
-     * Getting method reflection instance from reflection class.
-     *
-     * @param ReflectionClass $class
-     * @param string $method
-     *
-     * @throws ReflectionException
-     *
-     * @return ReflectionMethod|null
-     */
-    protected function reflectionMethod(ReflectionClass $class, string $method)
+    protected function reflectionMethod(ReflectionClass $class, string $method): ?ReflectionMethod
     {
-        return $class->hasMethod($method)
-            ? $class->getMethod($method)
-            : null;
+        return $class->hasMethod($method) ? $class->getMethod($method) : null;
     }
 }

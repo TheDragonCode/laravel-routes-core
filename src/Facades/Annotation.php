@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Facade;
  */
 class Annotation extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return Support::class;
     }

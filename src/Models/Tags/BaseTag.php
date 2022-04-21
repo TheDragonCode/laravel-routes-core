@@ -3,7 +3,8 @@
 namespace DragonCode\LaravelRoutesCore\Models\Tags;
 
 use DragonCode\Contracts\Routing\Core\Tag;
-use DragonCode\LaravelRoutesCore\Traits\Makeable;
+use DragonCode\Support\Concerns\Makeable;
+use DragonCode\Support\Facades\Helpers\Str;
 use Illuminate\Support\Arr;
 use phpDocumentor\Reflection\DocBlock\Tag as DocTag;
 
@@ -11,13 +12,13 @@ abstract class BaseTag implements Tag
 {
     use Makeable;
 
-    public $code;
+    public int $code;
 
-    public $class;
+    public string $class;
 
-    public $description;
+    public ?string $description;
 
-    protected $sources = [];
+    protected array $sources = [];
 
     abstract public function setCode(): void;
 
@@ -45,7 +46,7 @@ abstract class BaseTag implements Tag
      */
     public function setClass(DocTag $tag): void
     {
-        $this->class = ltrim($tag->getType(), '\\');
+        $this->class = Str::ltrim($tag->getType(), '\\');
     }
 
     public function getDescription(): ?string
@@ -60,7 +61,7 @@ abstract class BaseTag implements Tag
         return $this;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return $this->getSource([
             'code'        => $this->code,
@@ -69,7 +70,7 @@ abstract class BaseTag implements Tag
         ]);
     }
 
-    protected function getSource(array $default)
+    protected function getSource(array $default): array
     {
         return Arr::get($this->sources, $this->getClass(), $default);
     }
