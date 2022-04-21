@@ -4,34 +4,31 @@ namespace DragonCode\LaravelRoutesCore\Support;
 
 use DragonCode\Contracts\Routing\Core\Config;
 use DragonCode\LaravelRoutesCore\Models\Route as RouteModel;
-use DragonCode\LaravelSupport\Facades\App as Application;
-use DragonCode\Support\Facades\Helpers\Arr;
 use Illuminate\Routing\Route;
+use Illuminate\Routing\RouteCollectionInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route as RouteFacade;
 
 class Routes
 {
-    protected $hide_methods = [];
+    protected array $hide_methods = [];
 
-    protected $hide_matching = [];
+    protected array $hide_matching = [];
 
-    protected $domain_force = false;
+    protected bool $domain_force = false;
 
-    protected $url;
+    protected ?string $url = null;
 
-    protected $namespace;
+    protected ?string $namespace = null;
 
-    protected $api_middlewares = [];
+    protected array $api_middlewares = [];
 
-    protected $web_middlewares = [];
+    protected array $web_middlewares = [];
 
     public function collection(): Collection
     {
         return $this->getRoutes()
-            ->filter(function (Route $route) {
-                return $this->allowUri($route->uri()) && $this->allowMethods($route->methods());
-            })
+            ->filter(fn (Route $route) => $this->allowUri($route->uri()) && $this->allowMethods($route->methods()))
             ->values()
             ->map(function (Route $route, int $index) {
                 return (new RouteModel($route, $index))
@@ -111,32 +108,14 @@ class Routes
         return $this;
     }
 
-    /**
-     * @return array|\Illuminate\Routing\RouteCollectionInterface
-     */
-    protected function getLaravelRoutes()
+    protected function getLaravelRoutes(): RouteCollectionInterface|array
     {
         return RouteFacade::getRoutes();
     }
 
-    protected function getLumenRoutes(): array
-    {
-        return array_map(static function (array $route) {
-            $method = Arr::get($route, 'method');
-            $uri    = Arr::get($route, 'uri');
-            $action = Arr::get($route, 'action');
-
-            return (new Route($method, $uri, $action))->uses($action);
-        }, $this->getLaravelRoutes());
-    }
-
     protected function getRoutes(): Collection
     {
-        $routes = Application::isLumen()
-            ? $this->getLumenRoutes()
-            : $this->getLaravelRoutes();
-
-        return collect($routes);
+        return collect($this->getLaravelRoutes());
     }
 
     protected function allowUri(string $uri): bool

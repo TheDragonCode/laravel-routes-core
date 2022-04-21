@@ -3,34 +3,32 @@
 namespace DragonCode\LaravelRoutesCore\Models;
 
 use DragonCode\LaravelRoutesCore\Facades\Annotation;
-use DragonCode\LaravelSupport\Facades\App;
-use DragonCode\Support\Facades\Helpers\Arr as ArrHelper;
+use DragonCode\Support\Facades\Helpers\Arr;
+use DragonCode\Support\Facades\Helpers\Str;
 use DragonCode\Support\Facades\Http\Builder;
 use DragonCode\Support\Facades\Http\Url;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Routing\Route as IlluminateRoute;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
 class Route implements Arrayable
 {
     /** @var \Illuminate\Routing\Route */
-    protected $route;
+    protected IlluminateRoute $route;
 
-    protected $priority;
+    protected int $priority;
 
-    protected $hide_methods = [];
+    protected array $hide_methods = [];
 
-    protected $domain_force = false;
+    protected bool $domain_force = false;
 
-    protected $url;
+    protected ?string $url = null;
 
-    protected $namespace;
+    protected ?string $namespace = null;
 
-    protected $api_middlewares = [];
+    protected array $api_middlewares = [];
 
-    protected $web_middlewares = [];
+    protected array $web_middlewares = [];
 
     public function __construct(IlluminateRoute $route, int $priority)
     {
@@ -38,42 +36,42 @@ class Route implements Arrayable
         $this->priority = ++$priority;
     }
 
-    public function setHideMethods(array $hide_methods)
+    public function setHideMethods(array $hide_methods): static
     {
         $this->hide_methods = $hide_methods;
 
         return $this;
     }
 
-    public function setDomainForce(bool $domain_force)
+    public function setDomainForce(bool $force): static
     {
-        $this->domain_force = $domain_force;
+        $this->domain_force = $force;
 
         return $this;
     }
 
-    public function setUrl($url)
+    public function setUrl(?string $url): static
     {
         $this->url = $url;
 
         return $this;
     }
 
-    public function setNamespace($namespace)
+    public function setNamespace(?string $namespace): static
     {
         $this->namespace = $namespace;
 
         return $this;
     }
 
-    public function setApiMiddlewares(array $middlewares)
+    public function setApiMiddlewares(array $middlewares): static
     {
         $this->api_middlewares = $middlewares;
 
         return $this;
     }
 
-    public function setWebMiddlewares(array $middlewares)
+    public function setWebMiddlewares(array $middlewares): static
     {
         $this->web_middlewares = $middlewares;
 
@@ -87,13 +85,11 @@ class Route implements Arrayable
 
     public function getMethods(): array
     {
-        $callback = static function ($value) {
-            return Str::upper($value);
-        };
+        $callback = static fn ($value) => Str::upper($value);
 
         return array_values(array_diff(
-            ArrHelper::map($this->route->methods(), $callback),
-            ArrHelper::map($this->hide_methods, $callback)
+            Arr::map($this->route->methods(), $callback),
+            Arr::map($this->hide_methods, $callback)
         ));
     }
 
@@ -103,9 +99,11 @@ class Route implements Arrayable
             return $domain;
         }
 
-        return $this->domain_force && Url::is($this->url)
-            ? Builder::parse($this->url)->getDomain()
-            : null;
+        if ($this->domain_force && Url::is($this->url)) {
+            return Builder::parse($this->url)->getDomain();
+        }
+
+        return null;
     }
 
     public function getPath(): string
@@ -120,13 +118,11 @@ class Route implements Arrayable
 
     public function getModule(): ?string
     {
-        $namespace = $this->namespace;
+        if ($this->namespace && Str::startsWith($this->getAction(), $this->namespace)) {
+            $action = Str::after($this->getAction(), $this->namespace);
+            $split  = Str::of($action)->ltrim('\\')->explode('\\')->toArray();
 
-        if ($namespace && Str::startsWith($this->getAction(), $namespace)) {
-            $action   = Str::after($this->getAction(), $namespace);
-            $splitted = explode('\\', ltrim($action, '\\'));
-
-            return Arr::first($splitted);
+            return Arr::first($split);
         }
 
         return null;
@@ -137,11 +133,7 @@ class Route implements Arrayable
         /** @var array|string $action */
         $action = $this->route->getActionName();
 
-        $value = App::isLumen()
-            ? Arr::get($action, 'uses')
-            : $action;
-
-        return $value ? ltrim($value, '\\') : 'Closure';
+        return $action ? ltrim($action, '\\') : 'Closure';
     }
 
     public function getMiddlewares(): array
@@ -149,7 +141,7 @@ class Route implements Arrayable
         $middlewares = $this->route->middleware();
         $method      = 'controllerMiddleware';
 
-        if (App::isLaravel() && method_exists($this->route, $method) && is_callable([$this->route, $method])) {
+        if (method_exists($this->route, $method) && is_callable([$this->route, $method])) {
             $middlewares = array_merge($middlewares, $this->route->{$method}());
         }
 
@@ -171,12 +163,12 @@ class Route implements Arrayable
         return Annotation::isDeprecated($this->getAction());
     }
 
-    public function getExceptions(): Collection
+    public function getExceptions(): Collection|array
     {
         return Annotation::exceptions($this->getAction());
     }
 
-    public function getResponse()
+    public function getResponse(): ?array
     {
         return Annotation::response($this->getAction());
     }
@@ -191,7 +183,7 @@ class Route implements Arrayable
         return $this->hasMiddleware($this->web_middlewares);
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'priority'    => $this->getPriority(),

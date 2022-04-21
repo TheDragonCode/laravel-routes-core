@@ -70,9 +70,6 @@ class AnnotationsTest extends TestCase
 
     protected function route(string $name): Route
     {
-        return Routes::collection()
-            ->filter(static function (Route $route) use ($name) {
-                return $name === $route->getName();
-            })->first();
+        return Routes::collection()->filter(static fn (Route $route) => $name === $route->getName())->first();
     }
 }
