@@ -15,7 +15,7 @@ class Reader
     use Makeable;
 
     public function __construct(
-        protected string  $controller,
+        protected string $controller,
         protected ?string $method = null
     ) {
     }
