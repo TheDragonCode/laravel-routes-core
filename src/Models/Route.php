@@ -168,7 +168,8 @@ class Route implements Arrayable
         return Annotation::exceptions($this->getAction());
     }
 
-    public function getResponse(): ?array
+    public function getResponse()
+
     {
         return Annotation::response($this->getAction());
     }
