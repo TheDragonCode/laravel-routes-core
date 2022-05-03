@@ -75,7 +75,7 @@ class Annotation
             ->filter();
     }
 
-    public function response(string $controller, ?string $method = null): ?Returns
+    public function response(string $controller, ?string $method = null)
     {
         return $this->get(function (DocBlock $doc) {
             $returns = array_map(static fn (Return_ $tag) => Returns::make($tag), $this->getTagsByName($doc, 'return'));
