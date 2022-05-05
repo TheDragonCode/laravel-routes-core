@@ -169,7 +169,6 @@ class Route implements Arrayable
     }
 
     public function getResponse()
-
     {
         return Annotation::response($this->getAction());
     }
