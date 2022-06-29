@@ -32,7 +32,8 @@
         "phpunit/phpunit": "^9.0"
     },
     "conflict": {
-        "andrey-helldar/laravel-routes-core": "*"
+        "andrey-helldar/laravel-routes-core": "*",
+        "laravel/lumen-framework": "*"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
