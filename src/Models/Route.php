@@ -145,7 +145,10 @@ class Route implements Arrayable
             $middlewares = array_merge($middlewares, $this->route->{$method}());
         }
 
-        return array_values($middlewares);
+        return Arr::of($middlewares)
+            ->map(fn (mixed $middleware) => is_callable($middleware) ? 'closure' : $middleware)
+            ->values()
+            ->toArray();
     }
 
     public function getSummary(): ?string
