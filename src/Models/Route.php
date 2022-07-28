@@ -145,7 +145,7 @@ class Route implements Arrayable
             $middlewares = array_merge($middlewares, $this->route->{$method}());
         }
 
-        return array_values($middlewares);
+        return array_filter(array_values($middlewares), fn ($mw) => is_string($mw));
     }
 
     public function getSummary(): ?string
@@ -206,6 +206,6 @@ class Route implements Arrayable
 
     protected function hasMiddleware(array $middlewares): bool
     {
-        return ! empty(array_intersect($middlewares, $this->getMiddlewares()));
+        return !empty(array_intersect($middlewares, $this->getMiddlewares()));
     }
 }
