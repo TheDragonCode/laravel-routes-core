@@ -18,9 +18,11 @@ class Returns extends BaseTag
 
         if (is_subclass_of($class, JsonResponse::class)) {
             $this->code = 200;
-        } elseif (is_subclass_of($class, HttpException::class)) {
+        }
+        elseif (is_subclass_of($class, HttpException::class)) {
             $this->code = 400;
-        } else {
+        }
+        else {
             $this->code = 500;
         }
     }
