@@ -1,6 +1,6 @@
-# Laravel Routes Core
+# Routes Core for Laravel
 
-<img src="https://preview.dragon-code.pro/TheDragonCode/routes-core.svg?brand=laravel" alt="Laravel Routes Core"/>
+<img src="https://preview.dragon-code.pro/TheDragonCode/routes-core.svg?brand=laravel" alt="Routes Core"/>
 
 The core of applications for working with routes:
 
@@ -19,7 +19,7 @@ The core of applications for working with routes:
 This package is licensed under the [MIT License](LICENSE).
 
 
-[badge_build]:      https://img.shields.io/github/workflow/status/TheDragonCode/laravel-routes-core/phpunit?style=flat-square
+[badge_build]:      https://img.shields.io/github/actions/workflow/status/TheDragonCode/laravel-routes-core/phpunit.yml?style=flat-square
 
 [badge_downloads]:  https://img.shields.io/packagist/dt/dragon-code/laravel-routes-core.svg?style=flat-square
 
