@@ -15,12 +15,6 @@ use phpDocumentor\Reflection\DocBlock\Tags\Throws as DocThrows;
 
 class Annotation
 {
-    /**
-     * @param string $controller
-     * @param string|null $method
-     *
-     * @return string|null
-     */
     public function summary(string $controller, ?string $method = null): ?string
     {
         return $this->get(static function (DocBlock $doc) {
@@ -28,12 +22,6 @@ class Annotation
         }, $controller, $method);
     }
 
-    /**
-     * @param string $controller
-     * @param string|null $method
-     *
-     * @return string|null
-     */
     public function description(string $controller, ?string $method = null): ?string
     {
         return $this->get(static function (DocBlock $doc) {
@@ -41,22 +29,13 @@ class Annotation
         }, $controller, $method);
     }
 
-    /**
-     * @param string $controller
-     * @param string|null $method
-     *
-     * @return bool
-     */
     public function isDeprecated(string $controller, ?string $method = null): bool
     {
         return (bool) $this->get(static fn (DocBlock $doc) => $doc->hasTag('deprecated'), $controller, $method);
     }
 
     /**
-     * @param string $controller
-     * @param string|null $method
-     *
-     * @return \DragonCode\LaravelRoutesCore\Models\Tags\Throws[]|\Illuminate\Support\Collection
+     * @return array<\DragonCode\LaravelRoutesCore\Models\Tags\Throws>|\Illuminate\Support\Collection
      */
     public function exceptions(string $controller, ?string $method = null): Collection
     {

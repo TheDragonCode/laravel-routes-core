@@ -15,9 +15,7 @@ class Controller extends BaseController
     /**
      * Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo.
      */
-    public function summary()
-    {
-    }
+    public function summary() {}
 
     /**
      * Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo.
@@ -26,9 +24,7 @@ class Controller extends BaseController
      * Pellentesque lorem libero, ultricies ut nisl in, vestibulum egestas neque.
      * Nulla facilisi. Aenean vitae justo bibendum, scelerisque arcu cursus, scelerisque sapien.
      */
-    public function description()
-    {
-    }
+    public function description() {}
 
     /**
      * Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo.
@@ -39,41 +35,22 @@ class Controller extends BaseController
      *
      * @deprecated
      */
-    public function deprecated()
-    {
-    }
+    public function deprecated() {}
 
-    public function without()
-    {
-    }
+    public function without() {}
 
     /**
      * @deprecated
      */
-    public function withoutDeprecated()
-    {
-    }
+    public function withoutDeprecated() {}
 
-    public function routeApiMiddleware()
-    {
-    }
+    public function routeApiMiddleware() {}
 
-    public function controllerApiMiddleware()
-    {
-    }
+    public function controllerApiMiddleware() {}
 
-    public function routeWebMiddleware()
-    {
-    }
+    public function routeWebMiddleware() {}
 
-    public function controllerWebMiddleware()
-    {
-    }
+    public function controllerWebMiddleware() {}
 
-    /**
-     * @return
-     */
-    public function incorrectDocBlock()
-    {
-    }
+    public function incorrectDocBlock() {}
 }

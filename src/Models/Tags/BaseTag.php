@@ -41,9 +41,6 @@ abstract class BaseTag implements Tag
         return $this->class;
     }
 
-    /**
-     * @param \phpDocumentor\Reflection\DocBlock\Tag $tag
-     */
     public function setClass(DocTag $tag): void
     {
         $this->class = Str::ltrim($tag->getType(), '\\');

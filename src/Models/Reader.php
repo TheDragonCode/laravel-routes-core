@@ -17,8 +17,7 @@ class Reader
     public function __construct(
         protected string $controller,
         protected ?string $method = null
-    ) {
-    }
+    ) {}
 
     public function forClass(): ?DocBlock
     {

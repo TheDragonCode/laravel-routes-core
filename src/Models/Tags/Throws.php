@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Throws extends BaseTag
 {
-    public function setDescription(Tag|DocThrows $tag): void
+    public function setDescription(DocThrows|Tag $tag): void
     {
         $this->description = $tag->getDescription()->getBodyTemplate() ?? null;
     }

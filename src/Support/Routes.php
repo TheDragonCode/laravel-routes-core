@@ -108,7 +108,7 @@ class Routes
         return $this;
     }
 
-    protected function getLaravelRoutes(): RouteCollectionInterface|array
+    protected function getLaravelRoutes(): array|RouteCollectionInterface
     {
         return RouteFacade::getRoutes();
     }

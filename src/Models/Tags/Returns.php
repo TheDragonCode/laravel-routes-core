@@ -8,9 +8,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Returns extends BaseTag
 {
-    public function setDescription(DocTag $tag): void
-    {
-    }
+    public function setDescription(DocTag $tag): void {}
 
     public function setCode(): void
     {

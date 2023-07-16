@@ -1,19 +1,14 @@
 <?php
 
-app('router')->get('/foo', function () {
-});
+app('router')->get('/foo', function () {});
 
-app('router')->match(['PUT', 'PATCH'], '/bar', function () {
-});
+app('router')->match(['PUT', 'PATCH'], '/bar', function () {});
 
-app('router')->get('/_ignition/baq', function () {
-});
+app('router')->get('/_ignition/baq', function () {});
 
-app('router')->get('/telescope/baw', function () {
-});
+app('router')->get('/telescope/baw', function () {});
 
-app('router')->get('/_debugbar/bae', function () {
-});
+app('router')->get('/_debugbar/bae', function () {});
 
 app('router')->get('summary', '\Tests\Fixtures\Controller@summary')->name('summary');
 app('router')->get('description', '\Tests\Fixtures\Controller@description')->name('description');
@@ -41,9 +36,7 @@ app('router')
     ->name('controllerWebMiddleware');
 
 app('router')
-    ->get('closureNullName', static function () {
-    });
+    ->get('closureNullName', static function () {});
 
 app('router')
-    ->get('closure', static function () {
-    })->name('closure');
+    ->get('closure', static function () {})->name('closure');

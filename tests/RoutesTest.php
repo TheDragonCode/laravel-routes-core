@@ -62,67 +62,51 @@ class RoutesTest extends TestCase
                     case 'foo':
                         $this->routeFoo($route);
                         break;
-
                     case 'bar':
                         $this->routeBar($route);
                         break;
-
                     case '_ignition/baq':
                         $this->routeIgnitionBaq($route);
                         break;
-
                     case 'telescope/baw':
                         $this->routeTelescopeBaw($route);
                         break;
-
                     case '_debugbar/bae':
                         $this->routeDebugBarBae($route);
                         break;
-
                     case 'summary':
                         $this->routeSummary($route);
                         break;
-
                     case 'description':
                         $this->routeDescription($route);
                         break;
-
                     case 'deprecated':
                         $this->routeDeprecated($route);
                         break;
-
                     case 'without':
                         $this->routeWithout($route);
                         break;
-
                     case 'withoutDeprecated':
                         $this->routeWithoutDeprecated($route);
                         break;
-
                     case 'incorrectDocBlock':
                         $this->routeIncorrectDocBlock($route);
                         break;
-
                     case 'routeApiMiddleware':
                         $this->routeRoutingApiMiddleware($route);
                         break;
-
                     case 'controllerApiMiddleware':
                         $this->routeControllerApiMiddleware($route);
                         break;
-
                     case 'routeWebMiddleware':
                         $this->routeRoutingWebMiddleware($route);
                         break;
-
                     case 'controllerWebMiddleware':
                         $this->routeControllerWebMiddleware($route);
                         break;
-
                     case 'closureNullName':
                         $this->routeClosureNullName($route);
                         break;
-
                     case 'closure':
                         $this->routeClosure($route);
                         break;
@@ -144,67 +128,51 @@ class RoutesTest extends TestCase
                     case 'foo':
                         $this->routeFoo($route);
                         break;
-
                     case 'bar':
                         $this->routeBar($route);
                         break;
-
                     case '_ignition/baq':
                         $this->routeIgnitionBaq($route);
                         break;
-
                     case 'telescope/baw':
                         $this->routeTelescopeBaw($route);
                         break;
-
                     case '_debugbar/bae':
                         $this->routeDebugBarBae($route);
                         break;
-
                     case 'summary':
                         $this->routeSummary($route);
                         break;
-
                     case 'description':
                         $this->routeDescription($route);
                         break;
-
                     case 'deprecated':
                         $this->routeDeprecated($route);
                         break;
-
                     case 'without':
                         $this->routeWithout($route);
                         break;
-
                     case 'withoutDeprecated':
                         $this->routeWithoutDeprecated($route);
                         break;
-
                     case 'incorrectDocBlock':
                         $this->routeIncorrectDocBlock($route);
                         break;
-
                     case 'routeApiMiddleware':
                         $this->routeRoutingApiMiddleware($route);
                         break;
-
                     case 'controllerApiMiddleware':
                         $this->routeControllerApiMiddleware($route);
                         break;
-
                     case 'routeWebMiddleware':
                         $this->routeRoutingWebMiddleware($route);
                         break;
-
                     case 'controllerWebMiddleware':
                         $this->routeControllerWebMiddleware($route);
                         break;
-
                     case 'closureNullName':
                         $this->routeClosureNullName($route);
                         break;
-
                     case 'closure':
                         $this->routeClosure($route);
                         break;

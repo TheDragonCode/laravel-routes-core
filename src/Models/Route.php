@@ -13,7 +13,6 @@ use Illuminate\Support\Collection;
 
 class Route implements Arrayable
 {
-    /** @var \Illuminate\Routing\Route */
     protected IlluminateRoute $route;
 
     protected int $priority;
@@ -166,7 +165,7 @@ class Route implements Arrayable
         return Annotation::isDeprecated($this->getAction());
     }
 
-    public function getExceptions(): Collection|array
+    public function getExceptions(): array|Collection
     {
         return Annotation::exceptions($this->getAction());
     }
