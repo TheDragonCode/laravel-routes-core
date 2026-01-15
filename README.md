@@ -1,6 +1,9 @@
 # Routes Core for Laravel
 
-![routes core](https://banners.beyondco.de/Routes%20Core.png?theme=light&packageManager=composer+require&packageName=dragon-code%2Flaravel-routes-core&pattern=topography&style=style_2&description=by+The+Dragon+Code&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
+<picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://banners.beyondco.de/Laravel%20Routes%20Core.png?theme=dark&pattern=topography&style=style_2&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg&packageManager=composer+require&packageName=dragon-code%2Flaravel-routes-core&description=The+core+of+applications+for+working+with+routes&md=1&showWatermark=1">
+    <img src="https://banners.beyondco.de/Laravel%20Routes%20Core.png?theme=light&pattern=topography&style=style_2&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg&packageManager=composer+require&packageName=dragon-code%2Flaravel-routes-core&description=The+core+of+applications+for+working+with+routes&md=1&showWatermark=1" alt="Laravel Routes Core">
+</picture>
 
 The core of applications for working with routes:
 
