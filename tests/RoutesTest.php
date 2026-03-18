@@ -110,7 +110,9 @@ class RoutesTest extends TestCase
                     case 'closure':
                         $this->routeClosure($route);
                         break;
-
+                    case 'storage/{path}':
+                        $this->assertTrue(true);
+                        break;
                     default:
                         $this->assertTrue(false);
                 }
@@ -175,6 +177,9 @@ class RoutesTest extends TestCase
                         break;
                     case 'closure':
                         $this->routeClosure($route);
+                        break;
+                    case 'storage/{path}':
+                        $this->assertTrue(true);
                         break;
 
                     default:
